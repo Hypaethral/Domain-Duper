@@ -74,5 +74,22 @@ namespace WebScraping {
         private void urlGrabber_TextChanged( object sender, EventArgs e ) {
 
         }
+
+        private void label6_Click_1( object sender, EventArgs e ) {
+
+        }
+
+        private void button3_Click_1( object sender, EventArgs e ) {
+            int i = 0;
+
+            //This line resets the selectionBackColor formatting... is there a cleaner way? 
+            outputSource.Text = outputSource.Text;
+
+            while ( i < outputSource.Text.LastIndexOf( searchGrabber.Text ) ) {
+                outputSource.Find( searchGrabber.Text, i, outputSource.TextLength, RichTextBoxFinds.None );
+                outputSource.SelectionBackColor = Color.DarkOrchid;
+                i = outputSource.Text.IndexOf( searchGrabber.Text, i ) + 1;
+            }
+        }
     }
 }

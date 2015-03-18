@@ -47,7 +47,7 @@ namespace WebScraping {
         }
 
         private void button1_Click( object sender, EventArgs e ) {
-            jsonOutput.Text = WebWorker.post( urlGrabber.Text, whackGrabber.Text, jsonGrabber.Text );
+            jsonOutput.Text = WebWorker.post( urlGrabber.Text, whackGrabber.Text, contentGrabber.Text );
         }
 
         private void label3_Click( object sender, EventArgs e ) {
@@ -82,23 +82,11 @@ namespace WebScraping {
         }
 
         private void postJson_Click( object sender, EventArgs e ) {
-            //todo: for each
             //todo: search source
             //todo: css, javascript, html files
             jsonOutput.Text = "";
-            var it = jsonInput.Controls.GetEnumerator( );
-            if ( it.MoveNext( ) != false ) {
-                while ( true ) {
-                    try {
-                        JsonAttributeControl x = (JsonAttributeControl)it.Current;
-                        jsonOutput.Text += x.keyInput.Text + " : " + x.valueInput.Text + Environment.NewLine;
-                        if ( it.MoveNext( ) == false ) {
-                            break;
-                        };
-                    } catch ( Exception exception1 ) {
-                        continue;
-                    }
-                }
+            foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
+                jsonOutput.Text += ele.keyInput.Text + " : " + ele.valueInput.Text + Environment.NewLine;
             }
         }
     }
