@@ -30,7 +30,7 @@ namespace WebScraping {
             string searchMeta = WebWorker.searchTags( source, "meta" );
             outputMeta.Text = searchMeta;
 
-            if ( customGrabber.Text != "" ) {
+            if (!String.IsNullOrWhiteSpace(customGrabber.Text)) {
                 string searchCustom = WebWorker.searchTags( source, customGrabber.Text );
                 outputCustom.Text = searchCustom;
             }

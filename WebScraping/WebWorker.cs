@@ -22,7 +22,7 @@ namespace WebScraping {
                 return source;
             } catch ( UriFormatException exception1 ) {
                 MessageBox.Show( "Bad URI!" );
-                return "";
+                return String.Empty;
             }
         }
 
@@ -58,7 +58,7 @@ namespace WebScraping {
                 }
                 metasLength = tags.Count;
                 for ( int i = 0; i < metasLength; i++ ) {
-                    result = result + tags[i] + Environment.NewLine;
+                    result += tags[i] + Environment.NewLine;
                 }
 
                 return result;
@@ -72,24 +72,25 @@ namespace WebScraping {
                 whack = "/" + whack;
             }
             try {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url + whack );
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url + whack);
                 req.ContentType = "application/x-www-form-urlencoded";
                 req.ContentLength = 272;
                 req.Method = "POST";
 
-                using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
+                using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+                {
                     /*{'text':'mary had a little lamb'}
                     object ojson = new JavaScriptSerializer().Deserialize(json, typeof(object));
                     json.Replace("\"","\\\"");*/
-                    sw.Write( json );
-                    sw.Flush( );
-                    sw.Close( );
+                    sw.Write(json);
+                    sw.Flush();
+                }
 
-                    HttpWebResponse res = (HttpWebResponse)req.GetResponse( );
-                    using ( StreamReader sr = new StreamReader( res.GetResponseStream( ) ) ) {
-                        string response = sr.ReadToEnd( );
-                        sr.Close( );
-                        res.Close( );
+                using (HttpWebResponse res = (HttpWebResponse)req.GetResponse())
+                {
+                    using (StreamReader sr = new StreamReader(res.GetResponseStream()))
+                    {
+                        string response = sr.ReadToEnd();
                         return response;
                     }
                 }
