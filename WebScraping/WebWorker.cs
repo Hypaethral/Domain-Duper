@@ -58,7 +58,7 @@ namespace WebScraping {
                 }
                 metasLength = tags.Count;
                 for ( int i = 0; i < metasLength; i++ ) {
-                    result = result + tags[i] + Environment.NewLine;
+                    result += tags[i] + Environment.NewLine;
                 }
 
                 return result;
