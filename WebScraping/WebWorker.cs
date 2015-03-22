@@ -22,7 +22,7 @@ namespace WebScraping {
                 return source;
             } catch ( UriFormatException exception1 ) {
                 MessageBox.Show( "Bad URI!" );
-                return "";
+                return String.Empty;
             }
         }
 
