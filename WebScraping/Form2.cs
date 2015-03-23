@@ -47,7 +47,8 @@ namespace WebScraping {
         }
 
         private void button1_Click( object sender, EventArgs e ) {
-            jsonOutput.Text = WebWorker.post( urlGrabber.Text, whackGrabber.Text, contentGrabber.Text );
+            string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
+            jsonOutput.Text = WebWorker.post( url, whackGrabber.Text, contentGrabber.Text, new Dictionary<string, string>( ) );
         }
 
         private void label3_Click( object sender, EventArgs e ) {
@@ -82,12 +83,15 @@ namespace WebScraping {
         }
 
         private void postJson_Click( object sender, EventArgs e ) {
-            //todo: search source
             //todo: css, javascript, html files
-            jsonOutput.Text = "";
+            jsonOutput.Text = String.Empty;
+            JsonObject json = new JsonObject( );
             foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
-                jsonOutput.Text += ele.keyInput.Text + " : " + ele.valueInput.Text + Environment.NewLine;
+                //take each controls' values into a dictionary or object, pass to serialize json function in webworker
+                json.type.Add( ele.keyInput.Text, ele.valueInput.Text );
             }
+            string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
+            jsonOutput.Text = WebWorker.post( url, whackGrabber.Text, contentGrabber.Text, json.type );
         }
     }
 }

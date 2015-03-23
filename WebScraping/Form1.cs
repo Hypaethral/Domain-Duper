@@ -23,14 +23,14 @@ namespace WebScraping {
         }
 
         private void button1_Click( object sender, EventArgs e ) {
-            string url = urlGrabber.Text;
+            string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
             string source = WebWorker.getSource( url );
             outputSource.Text = source;
 
             string searchMeta = WebWorker.searchTags( source, "meta" );
             outputMeta.Text = searchMeta;
 
-            if ( customGrabber.Text != "" ) {
+            if ( !String.IsNullOrWhiteSpace( customGrabber.Text ) ) {
                 string searchCustom = WebWorker.searchTags( source, customGrabber.Text );
                 outputCustom.Text = searchCustom;
             }

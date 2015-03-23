@@ -137,6 +137,7 @@
             // 
             // jsonOutput
             // 
+            this.jsonOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.jsonOutput.Location = new System.Drawing.Point(598, 120);
             this.jsonOutput.Multiline = true;
             this.jsonOutput.Name = "jsonOutput";
@@ -144,13 +145,13 @@
             this.jsonOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.jsonOutput.Size = new System.Drawing.Size(489, 488);
             this.jsonOutput.TabIndex = 37;
-            this.jsonOutput.UseWaitCursor = true;
             this.jsonOutput.TextChanged += new System.EventHandler(this.jsonOutput_TextChanged);
             // 
             // jsonInput
             // 
             this.jsonInput.AutoScroll = true;
             this.jsonInput.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.jsonInput.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.jsonInput.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.jsonInput.Location = new System.Drawing.Point(14, 121);
             this.jsonInput.Name = "jsonInput";

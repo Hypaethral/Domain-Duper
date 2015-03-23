@@ -89,7 +89,7 @@
             // 
             // outputMeta
             // 
-            this.outputMeta.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.outputMeta.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.outputMeta.Location = new System.Drawing.Point(712, 115);
             this.outputMeta.Multiline = true;
             this.outputMeta.Name = "outputMeta";
@@ -97,7 +97,6 @@
             this.outputMeta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputMeta.Size = new System.Drawing.Size(427, 183);
             this.outputMeta.TabIndex = 4;
-            this.outputMeta.UseWaitCursor = true;
             // 
             // outputCustom
             // 
