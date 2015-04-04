@@ -8,12 +8,14 @@ using System.Web.Script.Serialization;
 using System.Net;
 using System.IO;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 namespace WebScraping {
     //todo: exception handling
-    class WebWorker {
+    public class WebWorker {
         public static string getSource( string url ) {
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
+<<<<<<< HEAD
                 try {
                     HttpWebResponse res = (HttpWebResponse)req.GetResponse( );
                     StreamReader sr = new StreamReader( res.GetResponseStream( ) );
@@ -27,47 +29,28 @@ namespace WebScraping {
                 }
             } catch ( UriFormatException ex ) {
                 MessageBox.Show( ex.Message );
+=======
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse( );
+                StreamReader sr = new StreamReader( res.GetResponseStream( ) );
+                string source = sr.ReadToEnd( );
+                sr.Close( );
+                res.Close( );
+                return source;
+            } catch ( UriFormatException exception1 ) {
+                MessageBox.Show( "Bad URI!" );
+>>>>>>> 7bbfbe519c59164cc88756dbe75d64dc24bccad9
                 return String.Empty;
             }
         }
 
         public static string searchTags( string source, string tag ) {
-            List<string> tags = new List<string>( );
-            int tempGuy = 0;
-            string tempXeta = "";
-            string result = "";
-            int metasLength = 0;
-            if ( tag == "script" ) {
-                while ( source.IndexOf( "<" + tag ) > -1 ) {
-                    tempGuy = source.IndexOf( "<" + tag );
-                    source = source.Substring( tempGuy );
-                    tempXeta = source.Substring( 0, source.IndexOf( "/script>" ) + 8 );
-                    source = source.Substring( source.IndexOf( "/script>" ) + 8 );
-                    tags.Add( tempXeta );
-                }
-                metasLength = tags.Count;
-                for ( int i = 0; i < metasLength; i++ ) {
-                    result = result + tags[i] + Environment.NewLine + Environment.NewLine;
-                }
-
-                return result;
-            } else {
-                //substring continues to end of string, OR a particular LENGTH
-                //  this means substring does not continue to an index in a string.. do (length - index in a string) instead
-                while ( source.IndexOf( "<" + tag ) > -1 ) {
-                    tempGuy = source.IndexOf( "<" + tag );
-                    source = source.Substring( tempGuy );
-                    tempXeta = source.Substring( 0, source.IndexOf( ">" ) + 1 );
-                    source = source.Substring( source.IndexOf( ">" ) - 1 );
-                    tags.Add( tempXeta );
-                }
-                metasLength = tags.Count;
-                for ( int i = 0; i < metasLength; i++ ) {
-                    result = result + tags[i] + Environment.NewLine;
-                }
-
-                return result;
+            var matches = Regex.Matches(source, String.Format("(<{0}.*?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var result = String.Empty;
+            foreach (var match in matches)
+            {
+                result += match.ToString() + Environment.NewLine;
             }
+            return result; // returning a list of matches here would probably be a better long-term option
         }
 
         public static string post( string url, string whack, string contentType, Dictionary<string,string> json ) {
@@ -78,10 +61,11 @@ namespace WebScraping {
                 whack = "/" + whack;
             }
             try {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url + whack );
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url + whack);
                 req.ContentType = "application/x-www-form-urlencoded";
                 req.ContentLength = 272;
                 req.Method = "POST";
+<<<<<<< HEAD
                 try {
                     using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
                         /*{'text':'mary had a little lamb'}
@@ -95,6 +79,24 @@ namespace WebScraping {
                                 return response;
                             }
                         }
+=======
+
+                using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+                {
+                    /*{'text':'mary had a little lamb'}
+                    object ojson = new JavaScriptSerializer().Deserialize(json, typeof(object));
+                    json.Replace("\"","\\\"");*/
+                    sw.Write(json);
+                    sw.Flush();
+                }
+
+                using (HttpWebResponse res = (HttpWebResponse)req.GetResponse())
+                {
+                    using (StreamReader sr = new StreamReader(res.GetResponseStream()))
+                    {
+                        string response = sr.ReadToEnd();
+                        return response;
+>>>>>>> 7bbfbe519c59164cc88756dbe75d64dc24bccad9
                     }
                 } catch ( WebException ex ) {
                     MessageBox.Show( ex.Message );
