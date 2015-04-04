@@ -15,7 +15,6 @@ namespace WebScraping {
         public static string getSource( string url ) {
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
-<<<<<<< HEAD
                 try {
                     HttpWebResponse res = (HttpWebResponse)req.GetResponse( );
                     StreamReader sr = new StreamReader( res.GetResponseStream( ) );
@@ -29,21 +28,12 @@ namespace WebScraping {
                 }
             } catch ( UriFormatException ex ) {
                 MessageBox.Show( ex.Message );
-=======
-                HttpWebResponse res = (HttpWebResponse)req.GetResponse( );
-                StreamReader sr = new StreamReader( res.GetResponseStream( ) );
-                string source = sr.ReadToEnd( );
-                sr.Close( );
-                res.Close( );
-                return source;
-            } catch ( UriFormatException exception1 ) {
-                MessageBox.Show( "Bad URI!" );
->>>>>>> 7bbfbe519c59164cc88756dbe75d64dc24bccad9
                 return String.Empty;
             }
         }
 
         public static string searchTags( string source, string tag ) {
+            //todo: verify additional script functionality
             var matches = Regex.Matches(source, String.Format("(<{0}.*?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
             var result = String.Empty;
             foreach (var match in matches)
@@ -53,7 +43,7 @@ namespace WebScraping {
             return result; // returning a list of matches here would probably be a better long-term option
         }
 
-        public static string post( string url, string whack, string contentType, Dictionary<string,string> json ) {
+        public static string post( string url, string whack, string contentType, Dictionary<string, string> json ) {
             //todo:  serialize string:string dictionary as json
             if ( whack.IndexOf( "/" ) == 0 ) {
 
@@ -61,11 +51,10 @@ namespace WebScraping {
                 whack = "/" + whack;
             }
             try {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url + whack);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url + whack );
                 req.ContentType = "application/x-www-form-urlencoded";
                 req.ContentLength = 272;
                 req.Method = "POST";
-<<<<<<< HEAD
                 try {
                     using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
                         /*{'text':'mary had a little lamb'}
@@ -79,24 +68,6 @@ namespace WebScraping {
                                 return response;
                             }
                         }
-=======
-
-                using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
-                {
-                    /*{'text':'mary had a little lamb'}
-                    object ojson = new JavaScriptSerializer().Deserialize(json, typeof(object));
-                    json.Replace("\"","\\\"");*/
-                    sw.Write(json);
-                    sw.Flush();
-                }
-
-                using (HttpWebResponse res = (HttpWebResponse)req.GetResponse())
-                {
-                    using (StreamReader sr = new StreamReader(res.GetResponseStream()))
-                    {
-                        string response = sr.ReadToEnd();
-                        return response;
->>>>>>> 7bbfbe519c59164cc88756dbe75d64dc24bccad9
                     }
                 } catch ( WebException ex ) {
                     MessageBox.Show( ex.Message );
