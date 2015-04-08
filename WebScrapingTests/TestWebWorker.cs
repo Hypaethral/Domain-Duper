@@ -21,5 +21,17 @@ namespace WebScrapingTests
 
             Assert.AreEqual(expectedTags, actualTags);
         }
+
+        [TestMethod]
+        public void TestScriptTag()
+        {
+            var sourceInput = "<div><script><meta content=\"noodp\" name=\"robots\">var=\"hello world\"</script><div></div></div>";
+            var tagInput = "script";
+            var expectedTags = "<script><meta content=\"noodp\" name=\"robots\">var=\"hello world\"</script>";
+
+            var actualTags = WebScraping.WebWorker.searchTags(sourceInput, tagInput).Trim();
+
+            Assert.AreEqual(expectedTags, actualTags);
+        }
     }
 }

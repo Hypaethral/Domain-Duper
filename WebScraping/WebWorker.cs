@@ -34,13 +34,21 @@ namespace WebScraping {
 
         public static string searchTags( string source, string tag ) {
             //todo: verify additional script functionality
-            var matches = Regex.Matches(source, String.Format("(<{0}.*?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            var result = String.Empty;
-            foreach (var match in matches)
-            {
-                result += match.ToString() + Environment.NewLine;
+            if (tag != "script") {
+                var matches = Regex.Matches(source, String.Format("(<{0}.*?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                var result = String.Empty;
+                foreach (var match in matches) {
+                    result += match.ToString() + Environment.NewLine;
+                }
+                return result; // returning a list of matches here would probably be a better long-term option
+            } else {
+                var matches = Regex.Matches(source, String.Format("(<{0}.*?>[\\S\\s]*?</{0}?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                var result = String.Empty;
+                foreach (var match in matches) {
+                    result += match.ToString() + Environment.NewLine + Environment.NewLine;
+                }
+                return result; // returning a list of matches here would probably be a better long-term option
             }
-            return result; // returning a list of matches here would probably be a better long-term option
         }
 
         public static string post( string url, string whack, string contentType, Dictionary<string, string> json ) {
@@ -52,8 +60,11 @@ namespace WebScraping {
             }
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url + whack );
-                req.ContentType = "application/x-www-form-urlencoded";
-                req.ContentLength = 272;
+                if (contentType != String.Empty) {
+                    req.ContentType = contentType;
+                } else {
+                    req.ContentType = "application/x-www-form-urlencoded";
+                }
                 req.Method = "POST";
                 try {
                     using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
