@@ -80,17 +80,35 @@ namespace WebScraping {
         }
 
         private void button3_Click_1( object sender, EventArgs e ) {
-            if ( searchGrabber.Text != String.Empty ) {
+            //This line resets the selectionBackColor formatting... is there a cleaner way? 
+            outputSource.Text = outputSource.Text;
+            if ( searchGrabberSource.Text != String.Empty ) {
                 int i = 0;
 
-                //This line resets the selectionBackColor formatting... is there a cleaner way? 
-                outputSource.Text = outputSource.Text;
-                while ( i < outputSource.Text.LastIndexOf( searchGrabber.Text ) ) {
-                    outputSource.Find( searchGrabber.Text, i, outputSource.TextLength, RichTextBoxFinds.None );
+                while ( i < outputSource.Text.LastIndexOf( searchGrabberSource.Text ) ) {
+                    outputSource.Find( searchGrabberSource.Text, i, outputSource.TextLength, RichTextBoxFinds.None );
                     outputSource.SelectionBackColor = Color.DarkOrchid;
-                    i = outputSource.Text.IndexOf( searchGrabber.Text, i ) + 1;
+                    i = outputSource.Text.IndexOf( searchGrabberSource.Text, i ) + 1;
                 }
-            }
+            }            
+        }
+
+        private void textBox1_TextChanged( object sender, EventArgs e ) {
+
+        }
+
+        private void searchTagButton_Click( object sender, EventArgs e ) {
+            //This line resets the selectionBackColor formatting... is there a cleaner way? 
+            outputCustom.Text = outputCustom.Text;
+            if ( searchGrabberCustom.Text != String.Empty ) {
+                int i = 0;
+
+                while ( i < outputCustom.Text.LastIndexOf( searchGrabberCustom.Text ) ) {
+                    outputCustom.Find( searchGrabberCustom.Text, i, outputCustom.TextLength, RichTextBoxFinds.None );
+                    outputCustom.SelectionBackColor = Color.DarkOrchid;
+                    i = outputCustom.Text.IndexOf( searchGrabberCustom.Text, i ) + 1;
+                }
+            }   
         }
     }
 }

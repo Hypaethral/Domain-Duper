@@ -23,8 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent( ) {
-            this.label6 = new System.Windows.Forms.Label();
-            this.whackGrabber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.urlGrabber = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -40,23 +38,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.contentGrabber = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 42);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 13);
-            this.label6.TabIndex = 36;
-            this.label6.Text = "WHACK:";
-            // 
-            // whackGrabber
-            // 
-            this.whackGrabber.Location = new System.Drawing.Point(65, 39);
-            this.whackGrabber.Name = "whackGrabber";
-            this.whackGrabber.Size = new System.Drawing.Size(281, 20);
-            this.whackGrabber.TabIndex = 35;
-            this.whackGrabber.TextChanged += new System.EventHandler(this.whackGrabber_TextChanged);
             // 
             // label1
             // 
@@ -214,8 +195,6 @@
             this.Controls.Add(this.contentGrabber);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.jsonOutput);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.whackGrabber);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlGrabber);
@@ -228,8 +207,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox whackGrabber;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox urlGrabber;
         private System.Windows.Forms.Button button1;

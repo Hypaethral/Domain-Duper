@@ -29,14 +29,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.outputMeta = new System.Windows.Forms.TextBox();
-            this.outputCustom = new System.Windows.Forms.TextBox();
             this.customGrabber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.searchGrabber = new System.Windows.Forms.TextBox();
-            this.searchButton = new System.Windows.Forms.Button();
+            this.searchGrabberSource = new System.Windows.Forms.TextBox();
+            this.searchButtonSource = new System.Windows.Forms.Button();
             this.outputSource = new System.Windows.Forms.RichTextBox();
+            this.searchButtonCustom = new System.Windows.Forms.Button();
+            this.searchGrabberCustom = new System.Windows.Forms.TextBox();
+            this.outputCustom = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -80,7 +82,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(709, 99);
+            this.label3.Location = new System.Drawing.Point(709, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 6;
@@ -97,16 +99,6 @@
             this.outputMeta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputMeta.Size = new System.Drawing.Size(427, 183);
             this.outputMeta.TabIndex = 4;
-            // 
-            // outputCustom
-            // 
-            this.outputCustom.Location = new System.Drawing.Point(712, 337);
-            this.outputCustom.Multiline = true;
-            this.outputCustom.Name = "outputCustom";
-            this.outputCustom.ReadOnly = true;
-            this.outputCustom.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputCustom.Size = new System.Drawing.Size(427, 263);
-            this.outputCustom.TabIndex = 7;
             // 
             // customGrabber
             // 
@@ -128,7 +120,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(709, 321);
+            this.label5.Location = new System.Drawing.Point(717, 316);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 14;
@@ -145,22 +137,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // searchGrabber
+            // searchGrabberSource
             // 
-            this.searchGrabber.Location = new System.Drawing.Point(372, 88);
-            this.searchGrabber.Name = "searchGrabber";
-            this.searchGrabber.Size = new System.Drawing.Size(157, 20);
-            this.searchGrabber.TabIndex = 17;
+            this.searchGrabberSource.Location = new System.Drawing.Point(372, 88);
+            this.searchGrabberSource.Name = "searchGrabberSource";
+            this.searchGrabberSource.Size = new System.Drawing.Size(157, 20);
+            this.searchGrabberSource.TabIndex = 17;
             // 
-            // searchButton
+            // searchButtonSource
             // 
-            this.searchButton.Location = new System.Drawing.Point(536, 86);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(167, 23);
-            this.searchButton.TabIndex = 18;
-            this.searchButton.Text = "SEARCH";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.button3_Click_1);
+            this.searchButtonSource.Location = new System.Drawing.Point(536, 86);
+            this.searchButtonSource.Name = "searchButtonSource";
+            this.searchButtonSource.Size = new System.Drawing.Size(167, 23);
+            this.searchButtonSource.TabIndex = 18;
+            this.searchButtonSource.Text = "SEARCH";
+            this.searchButtonSource.UseVisualStyleBackColor = true;
+            this.searchButtonSource.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // outputSource
             // 
@@ -173,20 +165,52 @@
             this.outputSource.TabIndex = 19;
             this.outputSource.Text = "";
             // 
+            // searchButtonCustom
+            // 
+            this.searchButtonCustom.Location = new System.Drawing.Point(1024, 310);
+            this.searchButtonCustom.Name = "searchButtonCustom";
+            this.searchButtonCustom.Size = new System.Drawing.Size(115, 23);
+            this.searchButtonCustom.TabIndex = 21;
+            this.searchButtonCustom.Text = "SEARCH";
+            this.searchButtonCustom.UseVisualStyleBackColor = true;
+            this.searchButtonCustom.Click += new System.EventHandler(this.searchTagButton_Click);
+            // 
+            // searchGrabberCustom
+            // 
+            this.searchGrabberCustom.Location = new System.Drawing.Point(860, 313);
+            this.searchGrabberCustom.Name = "searchGrabberCustom";
+            this.searchGrabberCustom.Size = new System.Drawing.Size(158, 20);
+            this.searchGrabberCustom.TabIndex = 20;
+            this.searchGrabberCustom.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // outputCustom
+            // 
+            this.outputCustom.BackColor = System.Drawing.SystemColors.Control;
+            this.outputCustom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.outputCustom.Location = new System.Drawing.Point(712, 339);
+            this.outputCustom.Name = "outputCustom";
+            this.outputCustom.ReadOnly = true;
+            this.outputCustom.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.outputCustom.Size = new System.Drawing.Size(427, 261);
+            this.outputCustom.TabIndex = 22;
+            this.outputCustom.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1173, 619);
+            this.Controls.Add(this.outputCustom);
+            this.Controls.Add(this.searchButtonCustom);
+            this.Controls.Add(this.searchGrabberCustom);
             this.Controls.Add(this.outputSource);
-            this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.searchGrabber);
+            this.Controls.Add(this.searchButtonSource);
+            this.Controls.Add(this.searchGrabberSource);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.customGrabber);
-            this.Controls.Add(this.outputCustom);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.outputMeta);
@@ -209,14 +233,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox outputMeta;
-        private System.Windows.Forms.TextBox outputCustom;
         private System.Windows.Forms.TextBox customGrabber;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox searchGrabber;
-        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.TextBox searchGrabberSource;
+        private System.Windows.Forms.Button searchButtonSource;
         private System.Windows.Forms.RichTextBox outputSource;
+        private System.Windows.Forms.Button searchButtonCustom;
+        private System.Windows.Forms.TextBox searchGrabberCustom;
+        private System.Windows.Forms.RichTextBox outputCustom;
     }
 }
 

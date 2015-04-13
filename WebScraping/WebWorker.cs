@@ -51,15 +51,17 @@ namespace WebScraping {
             }
         }
 
-        public static string post( string url, string whack, string contentType, Dictionary<string, string> json ) {
-            //todo:  serialize string:string dictionary as json
-            if ( whack.IndexOf( "/" ) == 0 ) {
+        public static string serializeJson( List<KeyValuePair<string, string>> stuff ) {
+            return new JavaScriptSerializer( ).Serialize( stuff );
+            /*var s = new JavaScriptSerializer( );
+            string a = s.Serialize( stuff );
+            return s.Deserialize( a, a.GetType() );*/
+        }
 
-            } else {
-                whack = "/" + whack;
-            }
+        public static string post( string url, string contentType, List<KeyValuePair<string,string>> kvps ) {
+            //todo:  serialize string:string dictionary as json
             try {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url + whack );
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
                 if (contentType != String.Empty) {
                     req.ContentType = contentType;
                 } else {
@@ -71,6 +73,9 @@ namespace WebScraping {
                         /*{'text':'mary had a little lamb'}
                         object ojson = new JavaScriptSerializer().Deserialize(json, typeof(object));
                         json.Replace("\"","\\\"");*/
+
+                        string json = serializeJson( kvps );
+
                         sw.Write( json );
                         sw.Flush( );
                         using ( HttpWebResponse res = (HttpWebResponse)req.GetResponse( ) ) {
