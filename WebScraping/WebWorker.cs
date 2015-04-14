@@ -9,8 +9,10 @@ using System.Net;
 using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+//http://stackoverflow.com/questions/29615647/is-there-some-way-to-use-if-loop-in-python-more-than-4-times hahaha
+//hubcapsarecool@gmail.com hello12345 // grundleberg123
+
 namespace WebScraping {
-    //todo: exception handling
     public class WebWorker {
         public static string getSource( string url ) {
             try {
@@ -33,32 +35,43 @@ namespace WebScraping {
         }
 
         public static string searchTags( string source, string tag ) {
-            //todo: verify additional script functionality
             if (tag != "script") {
                 var matches = Regex.Matches(source, String.Format("(<{0}.*?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
                 var result = String.Empty;
                 foreach (var match in matches) {
                     result += match.ToString() + Environment.NewLine;
                 }
-                return result; // returning a list of matches here would probably be a better long-term option
+                return result;
             } else {
                 var matches = Regex.Matches(source, String.Format("(<{0}.*?>[\\S\\s]*?</{0}?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
                 var result = String.Empty;
                 foreach (var match in matches) {
                     result += match.ToString() + Environment.NewLine + Environment.NewLine;
                 }
-                return result; // returning a list of matches here would probably be a better long-term option
+                return result;
             }
         }
 
-        public static string serializeJson( List<KeyValuePair<string, string>> stuff ) {
-            return new JavaScriptSerializer( ).Serialize( stuff );
-            /*var s = new JavaScriptSerializer( );
-            string a = s.Serialize( stuff );
-            return s.Deserialize( a, a.GetType() );*/
+
+        /* old serializer syntax 
+         * var s = new JavaScriptSerializer( );
+         * string a = s.Serialize( stuff );
+         * return s.Deserialize( a, a.GetType() );
+         */
+        public static string serializeJson( Dictionary<string, string> dict ) {
+            StringBuilder sb = new StringBuilder();
+            int count = 0;
+            foreach( var entry in dict ){
+                sb.AppendFormat("{0}={1}", entry.Key, entry.Value, WebUtility.HtmlEncode(entry.Value));
+                if ( count != dict.Count - 1 ){
+                    sb.Append("&");
+                }
+                count++;
+            }
+            return sb.ToString();
         }
 
-        public static string post( string url, string contentType, List<KeyValuePair<string,string>> kvps ) {
+        public static string post( string url, string contentType, Dictionary<string,string> dict ) {
             //todo:  serialize string:string dictionary as json
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
@@ -70,11 +83,7 @@ namespace WebScraping {
                 req.Method = "POST";
                 try {
                     using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
-                        /*{'text':'mary had a little lamb'}
-                        object ojson = new JavaScriptSerializer().Deserialize(json, typeof(object));
-                        json.Replace("\"","\\\"");*/
-
-                        string json = serializeJson( kvps );
+                        string json = serializeJson( dict );
 
                         sw.Write( json );
                         sw.Flush( );
@@ -94,39 +103,5 @@ namespace WebScraping {
                 return String.Empty;
             }
         }
-        /*
-        public static string postJsonLogin( string url, string whack, string user, string pass ) {
-            //need to figure out what the site expects "user" and "pass" to be called on the server side
-            if ( whack.IndexOf( "/" ) == 0 ) {
-
-            } else {
-                whack = "/" + whack;
-            }
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url + whack );
-            req.ContentType = "text/json";
-            req.Method = "POST";
-            try {
-                using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
-                    string json = new JavaScriptSerializer( ).Serialize( new {
-                        user = user,
-                        pass = pass
-                    } );
-                    sw.Write( json );
-                    sw.Flush( );
-                    sw.Close( );
-
-                    HttpWebResponse res = (HttpWebResponse)req.GetResponse( );
-                    using ( StreamReader sr = new StreamReader( res.GetResponseStream( ) ) ) {
-                        string response = sr.ReadToEnd( );
-                        sr.Close( );
-                        res.Close( );
-                        return response;
-                    }
-                }
-            } catch ( WebException ex ) {
-                MessageBox.Show( ex.Message );
-                return "";
-            }
-        }*/
     }
 }

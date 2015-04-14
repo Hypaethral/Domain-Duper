@@ -87,11 +87,11 @@ namespace WebScraping {
             JsonObject json = new JsonObject( );
             foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
                 //take each controls' values into a dictionary or object, pass to serialize json function in webworker
-                json.type.Insert( 0, new KeyValuePair<string, string>( ele.keyInput.Text, ele.valueInput.Text ) );
+                json.kvps.Add( ele.keyInput.Text, ele.valueInput.Text );
             }
             string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
-            jsonOutput.Text = "You posted: " + Environment.NewLine + WebWorker.serializeJson(json.type) + Environment.NewLine + "You got: " + Environment.NewLine;
-            jsonOutput.Text += WebWorker.post( url, contentGrabber.Text, json.type );
+            jsonOutput.Text = "You posted: " + Environment.NewLine + WebWorker.serializeJson(json.kvps) + Environment.NewLine + "You got: " + Environment.NewLine;
+            jsonOutput.Text += WebWorker.post( url, contentGrabber.Text, json.kvps );
         }
     }
 }

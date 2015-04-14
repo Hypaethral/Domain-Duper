@@ -53,7 +53,7 @@
             this.urlGrabber.Location = new System.Drawing.Point(65, 13);
             this.urlGrabber.Name = "urlGrabber";
             this.urlGrabber.Size = new System.Drawing.Size(281, 20);
-            this.urlGrabber.TabIndex = 24;
+            this.urlGrabber.TabIndex = 0;
             this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
             // 
             // button1
@@ -81,7 +81,7 @@
             this.button4.Location = new System.Drawing.Point(854, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(233, 72);
-            this.button4.TabIndex = 49;
+            this.button4.TabIndex = 4;
             this.button4.Text = "previous page";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -101,7 +101,7 @@
             this.button2.Location = new System.Drawing.Point(12, 573);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(427, 35);
-            this.button2.TabIndex = 53;
+            this.button2.TabIndex = 2;
             this.button2.Text = "ADD";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
@@ -156,7 +156,7 @@
             this.postJson.Location = new System.Drawing.Point(360, 78);
             this.postJson.Name = "postJson";
             this.postJson.Size = new System.Drawing.Size(370, 23);
-            this.postJson.TabIndex = 56;
+            this.postJson.TabIndex = 3;
             this.postJson.Text = "NEW POST";
             this.postJson.UseVisualStyleBackColor = true;
             this.postJson.Click += new System.EventHandler(this.postJson_Click);
@@ -176,7 +176,7 @@
             this.contentGrabber.Multiline = true;
             this.contentGrabber.Name = "contentGrabber";
             this.contentGrabber.Size = new System.Drawing.Size(274, 22);
-            this.contentGrabber.TabIndex = 46;
+            this.contentGrabber.TabIndex = 1;
             this.contentGrabber.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Form2

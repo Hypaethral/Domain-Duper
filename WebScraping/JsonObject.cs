@@ -7,7 +7,7 @@ namespace WebScraping {
     public class JsonObject {
         public JsonObject( ) {
             name = "";
-            type = new List<KeyValuePair<string,string>>( );
+            kvps = new Dictionary<string,string>( );
         }
 
         public string name {
@@ -15,7 +15,7 @@ namespace WebScraping {
             set;
         }
 
-        public List<KeyValuePair<string, string>> type {
+        public Dictionary<string, string> kvps {
             get;
             set;
         }

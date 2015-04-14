@@ -46,7 +46,7 @@
             this.button1.Location = new System.Drawing.Point(53, 57);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(651, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 2;
             this.button1.Text = "SCRAPE";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -56,7 +56,7 @@
             this.urlGrabber.Location = new System.Drawing.Point(53, 31);
             this.urlGrabber.Name = "urlGrabber";
             this.urlGrabber.Size = new System.Drawing.Size(243, 20);
-            this.urlGrabber.TabIndex = 1;
+            this.urlGrabber.TabIndex = 0;
             this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
             // 
             // label1
@@ -65,7 +65,7 @@
             this.label1.Location = new System.Drawing.Point(12, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 11;
             this.label1.Text = "URL: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
@@ -75,7 +75,7 @@
             this.label2.Location = new System.Drawing.Point(12, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 8;
             this.label2.Text = "SOURCE";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -85,7 +85,7 @@
             this.label3.Location = new System.Drawing.Point(709, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 11;
             this.label3.Text = "META TAGS";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -98,14 +98,14 @@
             this.outputMeta.ReadOnly = true;
             this.outputMeta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputMeta.Size = new System.Drawing.Size(427, 183);
-            this.outputMeta.TabIndex = 4;
+            this.outputMeta.TabIndex = 15;
             // 
             // customGrabber
             // 
             this.customGrabber.Location = new System.Drawing.Point(461, 31);
             this.customGrabber.Name = "customGrabber";
             this.customGrabber.Size = new System.Drawing.Size(243, 20);
-            this.customGrabber.TabIndex = 12;
+            this.customGrabber.TabIndex = 1;
             // 
             // label4
             // 
@@ -132,7 +132,7 @@
             this.button2.Location = new System.Drawing.Point(906, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(233, 72);
-            this.button2.TabIndex = 15;
+            this.button2.TabIndex = 7;
             this.button2.Text = "next page";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -142,14 +142,14 @@
             this.searchGrabberSource.Location = new System.Drawing.Point(372, 88);
             this.searchGrabberSource.Name = "searchGrabberSource";
             this.searchGrabberSource.Size = new System.Drawing.Size(157, 20);
-            this.searchGrabberSource.TabIndex = 17;
+            this.searchGrabberSource.TabIndex = 3;
             // 
             // searchButtonSource
             // 
             this.searchButtonSource.Location = new System.Drawing.Point(536, 86);
             this.searchButtonSource.Name = "searchButtonSource";
             this.searchButtonSource.Size = new System.Drawing.Size(167, 23);
-            this.searchButtonSource.TabIndex = 18;
+            this.searchButtonSource.TabIndex = 4;
             this.searchButtonSource.Text = "SEARCH";
             this.searchButtonSource.UseVisualStyleBackColor = true;
             this.searchButtonSource.Click += new System.EventHandler(this.button3_Click_1);
@@ -170,7 +170,7 @@
             this.searchButtonCustom.Location = new System.Drawing.Point(1024, 310);
             this.searchButtonCustom.Name = "searchButtonCustom";
             this.searchButtonCustom.Size = new System.Drawing.Size(115, 23);
-            this.searchButtonCustom.TabIndex = 21;
+            this.searchButtonCustom.TabIndex = 6;
             this.searchButtonCustom.Text = "SEARCH";
             this.searchButtonCustom.UseVisualStyleBackColor = true;
             this.searchButtonCustom.Click += new System.EventHandler(this.searchTagButton_Click);
@@ -180,7 +180,7 @@
             this.searchGrabberCustom.Location = new System.Drawing.Point(860, 313);
             this.searchGrabberCustom.Name = "searchGrabberCustom";
             this.searchGrabberCustom.Size = new System.Drawing.Size(158, 20);
-            this.searchGrabberCustom.TabIndex = 20;
+            this.searchGrabberCustom.TabIndex = 5;
             this.searchGrabberCustom.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // outputCustom
