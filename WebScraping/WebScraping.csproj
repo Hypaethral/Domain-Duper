@@ -71,6 +71,9 @@
     <Compile Include="JsonAttributeControl.Designer.cs">
       <DependentUpon>JsonAttributeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SplitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WebWorker.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

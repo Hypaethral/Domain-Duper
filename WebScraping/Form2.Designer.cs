@@ -23,9 +23,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent( ) {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.urlGrabber = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -34,9 +34,19 @@
             this.jsonOutput = new System.Windows.Forms.TextBox();
             this.jsonInput = new System.Windows.Forms.FlowLayoutPanel();
             this.clearAll = new System.Windows.Forms.Button();
-            this.postJson = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.contentGrabber = new System.Windows.Forms.TextBox();
+            this.postJson = new WebScraping.SplitButton();
+            this.restOpts = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHead = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemGet = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemPatch = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemPost = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemPut = new System.Windows.Forms.ToolStripMenuItem();
+            this.restOpts.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -55,16 +65,6 @@
             this.urlGrabber.Size = new System.Drawing.Size(281, 20);
             this.urlGrabber.TabIndex = 0;
             this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(360, 54);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(370, 23);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "POST";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label4
             // 
@@ -151,16 +151,6 @@
             this.clearAll.UseVisualStyleBackColor = true;
             this.clearAll.Click += new System.EventHandler(this.clearAll_Click);
             // 
-            // postJson
-            // 
-            this.postJson.Location = new System.Drawing.Point(360, 78);
-            this.postJson.Name = "postJson";
-            this.postJson.Size = new System.Drawing.Size(370, 23);
-            this.postJson.TabIndex = 3;
-            this.postJson.Text = "NEW POST";
-            this.postJson.UseVisualStyleBackColor = true;
-            this.postJson.Click += new System.EventHandler(this.postJson_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -179,6 +169,81 @@
             this.contentGrabber.TabIndex = 1;
             this.contentGrabber.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // postJson
+            // 
+            this.postJson.AutoSize = true;
+            this.postJson.ContextMenuStrip = this.restOpts;
+            this.postJson.Location = new System.Drawing.Point(456, 53);
+            this.postJson.Name = "postJson";
+            this.postJson.Size = new System.Drawing.Size(274, 41);
+            this.postJson.SplitMenuStrip = this.restOpts;
+            this.postJson.TabIndex = 56;
+            this.postJson.Text = "POST";
+            this.postJson.UseVisualStyleBackColor = true;
+            this.postJson.Click += new System.EventHandler(this.postJson_Click);
+            // 
+            // restOpts
+            // 
+            this.restOpts.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemCopy,
+            this.menuItemDelete,
+            this.menuItemGet,
+            this.menuItemHead,
+            this.menuItemOptions,
+            this.menuItemPatch,
+            this.menuItemPost,
+            this.menuItemPut});
+            this.restOpts.Name = "restOpts";
+            this.restOpts.Size = new System.Drawing.Size(153, 202);
+            // 
+            // menuItemCopy
+            // 
+            this.menuItemCopy.Name = "menuItemCopy";
+            this.menuItemCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuItemCopy.Text = "COPY";
+            // 
+            // menuItemDelete
+            // 
+            this.menuItemDelete.Name = "menuItemDelete";
+            this.menuItemDelete.Size = new System.Drawing.Size(152, 22);
+            this.menuItemDelete.Text = "DELETE";
+            // 
+            // menuItemHead
+            // 
+            this.menuItemHead.Name = "menuItemHead";
+            this.menuItemHead.Size = new System.Drawing.Size(152, 22);
+            this.menuItemHead.Text = "HEAD";
+            // 
+            // menuItemGet
+            // 
+            this.menuItemGet.Name = "menuItemGet";
+            this.menuItemGet.Size = new System.Drawing.Size(152, 22);
+            this.menuItemGet.Text = "GET";
+            // 
+            // menuItemOptions
+            // 
+            this.menuItemOptions.Name = "menuItemOptions";
+            this.menuItemOptions.Size = new System.Drawing.Size(152, 22);
+            this.menuItemOptions.Text = "OPTIONS";
+            // 
+            // menuItemPatch
+            // 
+            this.menuItemPatch.Name = "menuItemPatch";
+            this.menuItemPatch.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPatch.Text = "PATCH";
+            // 
+            // menuItemPost
+            // 
+            this.menuItemPost.Name = "menuItemPost";
+            this.menuItemPost.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPost.Text = "POST";
+            // 
+            // menuItemPut
+            // 
+            this.menuItemPut.Name = "menuItemPut";
+            this.menuItemPut.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPut.Text = "PUT";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,13 +258,13 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.contentGrabber);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.jsonOutput);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlGrabber);
             this.Name = "Form2";
             this.Text = "POSTING";
+            this.restOpts.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,7 +274,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox urlGrabber;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
@@ -218,9 +282,18 @@
         private System.Windows.Forms.TextBox jsonOutput;
         private System.Windows.Forms.FlowLayoutPanel jsonInput;
         private System.Windows.Forms.Button clearAll;
-        private System.Windows.Forms.Button postJson;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox contentGrabber;
+        private SplitButton postJson;
+        private System.Windows.Forms.ContextMenuStrip restOpts;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCopy;
+        private System.Windows.Forms.ToolStripMenuItem menuItemDelete;
+        private System.Windows.Forms.ToolStripMenuItem menuItemHead;
+        private System.Windows.Forms.ToolStripMenuItem menuItemGet;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOptions;
+        private System.Windows.Forms.ToolStripMenuItem menuItemPatch;
+        private System.Windows.Forms.ToolStripMenuItem menuItemPost;
+        private System.Windows.Forms.ToolStripMenuItem menuItemPut;
 
     }
 }

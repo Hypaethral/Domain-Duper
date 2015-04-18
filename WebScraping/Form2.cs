@@ -13,14 +13,6 @@ namespace WebScraping {
             InitializeComponent( );
         }
 
-        private void label9_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void textBox2_TextChanged( object sender, EventArgs e ) {
-
-        }
-
         private void textBox1_TextChanged( object sender, EventArgs e ) {
 
         }
@@ -35,19 +27,8 @@ namespace WebScraping {
             Close( );
         }
 
-        private void button2_Click( object sender, EventArgs e ) {
-        }
-
         private void urlGrabber_TextChanged( object sender, EventArgs e ) {
 
-        }
-
-        private void whackGrabber_TextChanged( object sender, EventArgs e ) {
-
-        }
-
-        private void button1_Click( object sender, EventArgs e ) {
-            string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
         }
 
         private void label3_Click( object sender, EventArgs e ) {
@@ -59,10 +40,6 @@ namespace WebScraping {
         }
 
         private void label2_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void jsonLoginOutput_TextChanged( object sender, EventArgs e ) {
 
         }
 
