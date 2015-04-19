@@ -10,7 +10,7 @@ namespace WebScraping {
         PushButtonState _state;
 
 
-        const int SplitSectionWidth = 18;
+        const int SplitSectionWidth = 30;
 
         static int BorderSize = SystemInformation.Border3DSize.Width * 2;
         bool skipNextOpen;

@@ -36,12 +36,12 @@
             this.clearAll = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.contentGrabber = new System.Windows.Forms.TextBox();
-            this.postJson = new WebScraping.SplitButton();
+            this.restCallButton = new WebScraping.SplitButton();
             this.restOpts = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemHead = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemGet = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHead = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPatch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPost = new System.Windows.Forms.ToolStripMenuItem();
@@ -169,18 +169,18 @@
             this.contentGrabber.TabIndex = 1;
             this.contentGrabber.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // postJson
+            // restCallButton
             // 
-            this.postJson.AutoSize = true;
-            this.postJson.ContextMenuStrip = this.restOpts;
-            this.postJson.Location = new System.Drawing.Point(456, 53);
-            this.postJson.Name = "postJson";
-            this.postJson.Size = new System.Drawing.Size(274, 41);
-            this.postJson.SplitMenuStrip = this.restOpts;
-            this.postJson.TabIndex = 56;
-            this.postJson.Text = "POST";
-            this.postJson.UseVisualStyleBackColor = true;
-            this.postJson.Click += new System.EventHandler(this.postJson_Click);
+            this.restCallButton.AutoSize = true;
+            this.restCallButton.ContextMenuStrip = this.restOpts;
+            this.restCallButton.Location = new System.Drawing.Point(456, 53);
+            this.restCallButton.Name = "restCallButton";
+            this.restCallButton.Size = new System.Drawing.Size(274, 41);
+            this.restCallButton.SplitMenuStrip = this.restOpts;
+            this.restCallButton.TabIndex = 56;
+            this.restCallButton.Text = "POST";
+            this.restCallButton.UseVisualStyleBackColor = true;
+            this.restCallButton.Click += new System.EventHandler(this.restCallButton_Click);
             // 
             // restOpts
             // 
@@ -193,63 +193,81 @@
             this.menuItemPatch,
             this.menuItemPost,
             this.menuItemPut});
+            this.restOpts.AutoSize = false;
             this.restOpts.Name = "restOpts";
-            this.restOpts.Size = new System.Drawing.Size(153, 202);
+            this.restOpts.Size = new System.Drawing.Size(this.restCallButton.Width, 180);
+            this.restOpts.Opening += new System.ComponentModel.CancelEventHandler(this.restOpts_Opening);
             // 
             // menuItemCopy
             // 
             this.menuItemCopy.Name = "menuItemCopy";
-            this.menuItemCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuItemCopy.AutoSize = false;
+            this.menuItemCopy.Size = new System.Drawing.Size(this.restCallButton.Width-1, 22);
             this.menuItemCopy.Text = "COPY";
+            this.menuItemCopy.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemDelete
             // 
             this.menuItemDelete.Name = "menuItemDelete";
-            this.menuItemDelete.Size = new System.Drawing.Size(152, 22);
+            this.menuItemDelete.AutoSize = false;
+            this.menuItemDelete.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             this.menuItemDelete.Text = "DELETE";
-            // 
-            // menuItemHead
-            // 
-            this.menuItemHead.Name = "menuItemHead";
-            this.menuItemHead.Size = new System.Drawing.Size(152, 22);
-            this.menuItemHead.Text = "HEAD";
+            this.menuItemDelete.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemGet
             // 
             this.menuItemGet.Name = "menuItemGet";
-            this.menuItemGet.Size = new System.Drawing.Size(152, 22);
+            this.menuItemGet.AutoSize = false;
+            this.menuItemGet.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             this.menuItemGet.Text = "GET";
+            this.menuItemGet.Click += new System.EventHandler(this.restOptsMenuItem_Click);
+            // 
+            // menuItemHead
+            // 
+            this.menuItemHead.Name = "menuItemHead";
+            this.menuItemHead.AutoSize = false;
+            this.menuItemHead.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemHead.Text = "HEAD";
+            this.menuItemHead.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemOptions
             // 
             this.menuItemOptions.Name = "menuItemOptions";
-            this.menuItemOptions.Size = new System.Drawing.Size(152, 22);
+            this.menuItemOptions.AutoSize = false;
+            this.menuItemOptions.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             this.menuItemOptions.Text = "OPTIONS";
+            this.menuItemOptions.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemPatch
             // 
             this.menuItemPatch.Name = "menuItemPatch";
-            this.menuItemPatch.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPatch.AutoSize = false;
+            this.menuItemPatch.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             this.menuItemPatch.Text = "PATCH";
+            this.menuItemPatch.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemPost
             // 
             this.menuItemPost.Name = "menuItemPost";
-            this.menuItemPost.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPost.AutoSize = false;
+            this.menuItemPost.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             this.menuItemPost.Text = "POST";
+            this.menuItemPost.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemPut
             // 
             this.menuItemPut.Name = "menuItemPut";
-            this.menuItemPut.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPut.AutoSize = false;
+            this.menuItemPut.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             this.menuItemPut.Text = "PUT";
+            this.menuItemPut.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 620);
-            this.Controls.Add(this.postJson);
+            this.Controls.Add(this.restCallButton);
             this.Controls.Add(this.clearAll);
             this.Controls.Add(this.jsonInput);
             this.Controls.Add(this.button2);
@@ -263,7 +281,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlGrabber);
             this.Name = "Form2";
-            this.Text = "POSTING";
+            this.Text = "REST API Interaction";
             this.restOpts.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -284,7 +302,7 @@
         private System.Windows.Forms.Button clearAll;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox contentGrabber;
-        private SplitButton postJson;
+        private SplitButton restCallButton;
         private System.Windows.Forms.ContextMenuStrip restOpts;
         private System.Windows.Forms.ToolStripMenuItem menuItemCopy;
         private System.Windows.Forms.ToolStripMenuItem menuItemDelete;

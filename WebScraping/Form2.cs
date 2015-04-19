@@ -58,17 +58,41 @@ namespace WebScraping {
 
         }
 
-        private void postJson_Click( object sender, EventArgs e ) {
+        private void restCallButton_Click( object sender, EventArgs e ) {
             //todo: css, javascript, html files
-            jsonOutput.Text = String.Empty;
-            JsonObject json = new JsonObject( );
-            foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
-                //take each controls' values into a dictionary or object, pass to serialize json function in webworker
-                json.kvps.Add( ele.keyInput.Text, ele.valueInput.Text );
+            /* TODO from sat 4-18 23:48: refactor POST to accept the REST verb as a parameter. . . .  Only some will use the dict
+                 (what happens if you try to "get" when there's leftover stuff in the json kvp area?)
+             * Ask the smarties about the manual coding with SplitButton's events and size
+                Is there a way to dynamically grab the parent's width without setting each added item to autosize=false and using the parent width?
+                I want a way to specify that the button "owns" the context menu ( ideally this would be done inside the SplitButton class,
+                maybe I answered my own question here... )
+            */
+
+            switch ( ( (SplitButton)sender ).Text ) {
+                case ("POST"):
+                    jsonOutput.Text = String.Empty;
+                    JsonObject json = new JsonObject( );
+                    foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
+                        //take each controls' values into a dictionary or object, pass to serialize json function in webworker
+                        json.kvps.Add( ele.keyInput.Text, ele.valueInput.Text );
+                    }
+                    string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
+                    jsonOutput.Text = "You posted: " + Environment.NewLine + WebWorker.serializeJson(json.kvps) + Environment.NewLine + "You got: " + Environment.NewLine;
+                    jsonOutput.Text += WebWorker.post( url, contentGrabber.Text, json.kvps );
+                    break;
+                default:
+                    MessageBox.Show( ( (SplitButton)sender ).Text + " is not implemented yet!" );
+                    break;
             }
-            string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
-            jsonOutput.Text = "You posted: " + Environment.NewLine + WebWorker.serializeJson(json.kvps) + Environment.NewLine + "You got: " + Environment.NewLine;
-            jsonOutput.Text += WebWorker.post( url, contentGrabber.Text, json.kvps );
+
+        }
+
+        private void restOpts_Opening( object sender, CancelEventArgs e ) {
+            //MessageBox.Show( "THE MENU OPENED, DUDE!" );
+        }
+
+        private void restOptsMenuItem_Click( object sender, EventArgs e ) {
+            restCallButton.Text = ( (ToolStripMenuItem)sender ).Text;
         }
     }
 }
