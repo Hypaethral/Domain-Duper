@@ -67,28 +67,26 @@ namespace WebScraping {
                 I want a way to specify that the button "owns" the context menu ( ideally this would be done inside the SplitButton class,
                 maybe I answered my own question here... )
             */
-
-            switch ( ( (SplitButton)sender ).Text ) {
-                case ("POST"):
-                    jsonOutput.Text = String.Empty;
-                    JsonObject json = new JsonObject( );
-                    foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
-                        //take each controls' values into a dictionary or object, pass to serialize json function in webworker
-                        json.kvps.Add( ele.keyInput.Text, ele.valueInput.Text );
-                    }
-                    string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
-                    jsonOutput.Text = "You posted: " + Environment.NewLine + WebWorker.serializeJson(json.kvps) + Environment.NewLine + "You got: " + Environment.NewLine;
-                    jsonOutput.Text += WebWorker.post( url, contentGrabber.Text, json.kvps );
-                    break;
-                default:
-                    MessageBox.Show( ( (SplitButton)sender ).Text + " is not implemented yet!" );
-                    break;
+            jsonOutput.Text = String.Empty;
+            JsonObject json = new JsonObject( );
+            foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
+                //take each controls' values into a dictionary or object, pass to serialize json function in webworker
+                if ( !String.IsNullOrWhiteSpace( ele.keyInput.Text ) && !String.IsNullOrWhiteSpace( ele.valueInput.Text ) ) {
+                    json.kvps.Add( ele.keyInput.Text, ele.valueInput.Text );
+                }
             }
-
+            string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
+            jsonOutput.Text = "You performed a " + ((SplitButton)sender ).Text + " with: " + Environment.NewLine + WebWorker.serializeJson(json.kvps) + Environment.NewLine + "You got: " + Environment.NewLine;
+            jsonOutput.Text += WebWorker.restCall( url, contentGrabber.Text, ( (SplitButton)sender ).Text, json.kvps );
         }
 
         private void restOpts_Opening( object sender, CancelEventArgs e ) {
-            //MessageBox.Show( "THE MENU OPENED, DUDE!" );
+            restOpts.Size = new System.Drawing.Size( this.restCallButton.Width, restOpts.Items.Count * 22 + 5 );
+            foreach ( ToolStripMenuItem item in restOpts.Items ){
+
+                item.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            }
+            
         }
 
         private void restOptsMenuItem_Click( object sender, EventArgs e ) {

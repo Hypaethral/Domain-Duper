@@ -36,7 +36,6 @@
             this.clearAll = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.contentGrabber = new System.Windows.Forms.TextBox();
-            this.restCallButton = new WebScraping.SplitButton();
             this.restOpts = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +45,7 @@
             this.menuItemPatch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPost = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPut = new System.Windows.Forms.ToolStripMenuItem();
+            this.restCallButton = new WebScraping.SplitButton();
             this.restOpts.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,22 +168,26 @@
             this.contentGrabber.Size = new System.Drawing.Size(274, 22);
             this.contentGrabber.TabIndex = 1;
             this.contentGrabber.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+
+
             // 
             // restCallButton
             // 
             this.restCallButton.AutoSize = true;
             this.restCallButton.ContextMenuStrip = this.restOpts;
-            this.restCallButton.Location = new System.Drawing.Point(456, 53);
+            this.restCallButton.Location = new System.Drawing.Point( 456, 53 );
             this.restCallButton.Name = "restCallButton";
-            this.restCallButton.Size = new System.Drawing.Size(274, 41);
+            this.restCallButton.Size = new System.Drawing.Size( 274, 41 );
             this.restCallButton.SplitMenuStrip = this.restOpts;
             this.restCallButton.TabIndex = 56;
             this.restCallButton.Text = "POST";
             this.restCallButton.UseVisualStyleBackColor = true;
-            this.restCallButton.Click += new System.EventHandler(this.restCallButton_Click);
+            this.restCallButton.Click += new System.EventHandler( this.restCallButton_Click );
+
             // 
             // restOpts
             // 
+            this.restOpts.AutoSize = false;
             this.restOpts.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemCopy,
             this.menuItemDelete,
@@ -193,74 +197,74 @@
             this.menuItemPatch,
             this.menuItemPost,
             this.menuItemPut});
-            this.restOpts.AutoSize = false;
             this.restOpts.Name = "restOpts";
-            this.restOpts.Size = new System.Drawing.Size(this.restCallButton.Width, 180);
+            this.restOpts.Size = new System.Drawing.Size(75, 180);
             this.restOpts.Opening += new System.ComponentModel.CancelEventHandler(this.restOpts_Opening);
             // 
             // menuItemCopy
             // 
-            this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.AutoSize = false;
-            this.menuItemCopy.Size = new System.Drawing.Size(this.restCallButton.Width-1, 22);
+            this.menuItemCopy.Name = "menuItemCopy";
+            this.menuItemCopy.Size = new System.Drawing.Size(32, 19);
             this.menuItemCopy.Text = "COPY";
             this.menuItemCopy.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemDelete
             // 
-            this.menuItemDelete.Name = "menuItemDelete";
             this.menuItemDelete.AutoSize = false;
-            this.menuItemDelete.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemDelete.Name = "menuItemDelete";
+            this.menuItemDelete.Size = new System.Drawing.Size(32, 19);
             this.menuItemDelete.Text = "DELETE";
             this.menuItemDelete.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemGet
             // 
-            this.menuItemGet.Name = "menuItemGet";
             this.menuItemGet.AutoSize = false;
-            this.menuItemGet.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemGet.Name = "menuItemGet";
+            this.menuItemGet.Size = new System.Drawing.Size(32, 19);
             this.menuItemGet.Text = "GET";
             this.menuItemGet.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemHead
             // 
-            this.menuItemHead.Name = "menuItemHead";
             this.menuItemHead.AutoSize = false;
-            this.menuItemHead.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemHead.Name = "menuItemHead";
+            this.menuItemHead.Size = new System.Drawing.Size(32, 19);
             this.menuItemHead.Text = "HEAD";
             this.menuItemHead.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemOptions
             // 
-            this.menuItemOptions.Name = "menuItemOptions";
             this.menuItemOptions.AutoSize = false;
-            this.menuItemOptions.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemOptions.Name = "menuItemOptions";
+            this.menuItemOptions.Size = new System.Drawing.Size(32, 19);
             this.menuItemOptions.Text = "OPTIONS";
             this.menuItemOptions.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemPatch
             // 
-            this.menuItemPatch.Name = "menuItemPatch";
             this.menuItemPatch.AutoSize = false;
-            this.menuItemPatch.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemPatch.Name = "menuItemPatch";
+            this.menuItemPatch.Size = new System.Drawing.Size(32, 19);
             this.menuItemPatch.Text = "PATCH";
             this.menuItemPatch.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemPost
             // 
-            this.menuItemPost.Name = "menuItemPost";
             this.menuItemPost.AutoSize = false;
-            this.menuItemPost.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemPost.Name = "menuItemPost";
+            this.menuItemPost.Size = new System.Drawing.Size(32, 19);
             this.menuItemPost.Text = "POST";
             this.menuItemPost.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
             // menuItemPut
             // 
-            this.menuItemPut.Name = "menuItemPut";
             this.menuItemPut.AutoSize = false;
-            this.menuItemPut.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
+            this.menuItemPut.Name = "menuItemPut";
+            this.menuItemPut.Size = new System.Drawing.Size(32, 19);
             this.menuItemPut.Text = "PUT";
             this.menuItemPut.Click += new System.EventHandler(this.restOptsMenuItem_Click);
+
             // 
             // Form2
             // 

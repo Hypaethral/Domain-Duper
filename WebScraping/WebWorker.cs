@@ -71,7 +71,7 @@ namespace WebScraping {
             return sb.ToString();
         }
 
-        public static string post( string url, string contentType, Dictionary<string,string> dict ) {
+        public static string restCall( string url, string contentType, string method, Dictionary<string,string> dict ) {
             //todo:  serialize string:string dictionary as json
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
@@ -80,7 +80,7 @@ namespace WebScraping {
                 } else {
                     req.ContentType = "application/x-www-form-urlencoded";
                 }
-                req.Method = "POST";
+                req.Method = method;
                 try {
                     using ( StreamWriter sw = new StreamWriter( req.GetRequestStream( ) ) ) {
                         string json = serializeJson( dict );
@@ -92,6 +92,14 @@ namespace WebScraping {
                                 string response = sr.ReadToEnd( );
                                 return response;
                             }
+                        }
+                    }
+                } catch ( ProtocolViolationException ex ) {
+                    //If we're here, we don't need the body (i.e., we're probably performing a GET).
+                    using ( HttpWebResponse res = (HttpWebResponse)req.GetResponse( ) ) {
+                        using ( StreamReader sr = new StreamReader( res.GetResponseStream( ) ) ) {
+                            string response = sr.ReadToEnd( );
+                            return response;
                         }
                     }
                 } catch ( WebException ex ) {
