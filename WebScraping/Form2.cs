@@ -67,7 +67,7 @@ namespace WebScraping {
                 I want a way to specify that the button "owns" the context menu ( ideally this would be done inside the SplitButton class,
                 maybe I answered my own question here... )
             */
-            jsonOutput.Text = String.Empty;
+            outputRestResult.Text = String.Empty;
             JsonObject json = new JsonObject( );
             foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
                 //take each controls' values into a dictionary or object, pass to serialize json function in webworker
@@ -76,8 +76,8 @@ namespace WebScraping {
                 }
             }
             string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
-            jsonOutput.Text = "You performed a " + ((SplitButton)sender ).Text + " with: " + Environment.NewLine + WebWorker.serializeJson(json.kvps) + Environment.NewLine + "You got: " + Environment.NewLine;
-            jsonOutput.Text += WebWorker.restCall( url, contentGrabber.Text, ( (SplitButton)sender ).Text, json.kvps );
+            outputRestResult.Text = "You performed a " + ( (SplitButton)sender ).Text + " with: " + Environment.NewLine + WebWorker.serializeJson( json.kvps ) + Environment.NewLine + "You got: " + Environment.NewLine;
+            outputRestResult.Text += JsonObject.beautifyJson( WebWorker.restCall( url, contentGrabber.Text, ( (SplitButton)sender ).Text, json.kvps ) );
         }
 
         private void restOpts_Opening( object sender, CancelEventArgs e ) {
@@ -91,6 +91,19 @@ namespace WebScraping {
 
         private void restOptsMenuItem_Click( object sender, EventArgs e ) {
             restCallButton.Text = ( (ToolStripMenuItem)sender ).Text;
+        }
+
+        private void searchRestResult_Click( object sender, EventArgs e ) {
+            //This line resets the selectionBackColor formatting... is there a cleaner way? 
+            outputRestResult.Text = outputRestResult.Text;
+            if ( searchGrabberRestResult.Text != String.Empty ) {
+                int i = 0;
+                while ( i < outputRestResult.Text.LastIndexOf( searchGrabberRestResult.Text ) ) {
+                    outputRestResult.Find( searchGrabberRestResult.Text, i, outputRestResult.TextLength, RichTextBoxFinds.None );
+                    outputRestResult.SelectionBackColor = Color.DarkOrchid;
+                    i = outputRestResult.Text.IndexOf( searchGrabberRestResult.Text, i ) + 1;
+                }
+            }   
         }
     }
 }

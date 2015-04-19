@@ -31,7 +31,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.jsonOutput = new System.Windows.Forms.TextBox();
             this.jsonInput = new System.Windows.Forms.FlowLayoutPanel();
             this.clearAll = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,6 +45,9 @@
             this.menuItemPost = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPut = new System.Windows.Forms.ToolStripMenuItem();
             this.restCallButton = new WebScraping.SplitButton();
+            this.searchButtonRestResult = new System.Windows.Forms.Button();
+            this.searchGrabberRestResult = new System.Windows.Forms.TextBox();
+            this.outputRestResult = new System.Windows.Forms.RichTextBox();
             this.restOpts.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,18 +118,6 @@
             this.label3.Text = "RESULT";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // jsonOutput
-            // 
-            this.jsonOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.jsonOutput.Location = new System.Drawing.Point(598, 120);
-            this.jsonOutput.Multiline = true;
-            this.jsonOutput.Name = "jsonOutput";
-            this.jsonOutput.ReadOnly = true;
-            this.jsonOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.jsonOutput.Size = new System.Drawing.Size(489, 488);
-            this.jsonOutput.TabIndex = 37;
-            this.jsonOutput.TextChanged += new System.EventHandler(this.jsonOutput_TextChanged);
-            // 
             // jsonInput
             // 
             this.jsonInput.AutoScroll = true;
@@ -168,22 +158,6 @@
             this.contentGrabber.Size = new System.Drawing.Size(274, 22);
             this.contentGrabber.TabIndex = 1;
             this.contentGrabber.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-
-
-            // 
-            // restCallButton
-            // 
-            this.restCallButton.AutoSize = true;
-            this.restCallButton.ContextMenuStrip = this.restOpts;
-            this.restCallButton.Location = new System.Drawing.Point( 456, 53 );
-            this.restCallButton.Name = "restCallButton";
-            this.restCallButton.Size = new System.Drawing.Size( 274, 41 );
-            this.restCallButton.SplitMenuStrip = this.restOpts;
-            this.restCallButton.TabIndex = 56;
-            this.restCallButton.Text = "POST";
-            this.restCallButton.UseVisualStyleBackColor = true;
-            this.restCallButton.Click += new System.EventHandler( this.restCallButton_Click );
-
             // 
             // restOpts
             // 
@@ -264,13 +238,54 @@
             this.menuItemPut.Size = new System.Drawing.Size(32, 19);
             this.menuItemPut.Text = "PUT";
             this.menuItemPut.Click += new System.EventHandler(this.restOptsMenuItem_Click);
-
+            // 
+            // restCallButton
+            // 
+            this.restCallButton.AutoSize = true;
+            this.restCallButton.ContextMenuStrip = this.restOpts;
+            this.restCallButton.Location = new System.Drawing.Point(456, 53);
+            this.restCallButton.Name = "restCallButton";
+            this.restCallButton.Size = new System.Drawing.Size(274, 41);
+            this.restCallButton.SplitMenuStrip = this.restOpts;
+            this.restCallButton.TabIndex = 56;
+            this.restCallButton.Text = "POST";
+            this.restCallButton.UseVisualStyleBackColor = true;
+            this.restCallButton.Click += new System.EventHandler(this.restCallButton_Click);
+            // 
+            // searchButtonRestResult
+            // 
+            this.searchButtonRestResult.Location = new System.Drawing.Point(1012, 95);
+            this.searchButtonRestResult.Name = "searchButtonRestResult";
+            this.searchButtonRestResult.Size = new System.Drawing.Size(75, 23);
+            this.searchButtonRestResult.TabIndex = 57;
+            this.searchButtonRestResult.Text = "SEARCH";
+            this.searchButtonRestResult.UseVisualStyleBackColor = true;
+            this.searchButtonRestResult.Click += new System.EventHandler(this.searchRestResult_Click);
+            // 
+            // searchGrabberRestResult
+            // 
+            this.searchGrabberRestResult.Location = new System.Drawing.Point(854, 97);
+            this.searchGrabberRestResult.Name = "searchGrabberRestResult";
+            this.searchGrabberRestResult.Size = new System.Drawing.Size(152, 20);
+            this.searchGrabberRestResult.TabIndex = 58;
+            // 
+            // outputRestResult
+            // 
+            this.outputRestResult.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.outputRestResult.Location = new System.Drawing.Point(599, 121);
+            this.outputRestResult.Name = "outputRestResult";
+            this.outputRestResult.Size = new System.Drawing.Size(488, 446);
+            this.outputRestResult.TabIndex = 59;
+            this.outputRestResult.Text = "";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 620);
+            this.Controls.Add(this.outputRestResult);
+            this.Controls.Add(this.searchGrabberRestResult);
+            this.Controls.Add(this.searchButtonRestResult);
             this.Controls.Add(this.restCallButton);
             this.Controls.Add(this.clearAll);
             this.Controls.Add(this.jsonInput);
@@ -280,7 +295,6 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.contentGrabber);
-            this.Controls.Add(this.jsonOutput);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlGrabber);
@@ -301,7 +315,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox jsonOutput;
         private System.Windows.Forms.FlowLayoutPanel jsonInput;
         private System.Windows.Forms.Button clearAll;
         private System.Windows.Forms.Label label5;
@@ -316,6 +329,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemPatch;
         private System.Windows.Forms.ToolStripMenuItem menuItemPost;
         private System.Windows.Forms.ToolStripMenuItem menuItemPut;
+        private System.Windows.Forms.Button searchButtonRestResult;
+        private System.Windows.Forms.TextBox searchGrabberRestResult;
+        private System.Windows.Forms.RichTextBox outputRestResult;
 
     }
 }
