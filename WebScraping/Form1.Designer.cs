@@ -23,6 +23,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent( ) {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.urlGrabber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,13 +41,20 @@
             this.searchButtonCustom = new System.Windows.Forms.Button();
             this.searchGrabberCustom = new System.Windows.Forms.TextBox();
             this.outputCustom = new System.Windows.Forms.RichTextBox();
+            this.favoriteButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.FavoritesStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.FavoritesStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(53, 57);
+            this.button1.Location = new System.Drawing.Point(53, 49);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(651, 23);
+            this.button1.Size = new System.Drawing.Size(651, 31);
             this.button1.TabIndex = 2;
             this.button1.Text = "SCRAPE";
             this.button1.UseVisualStyleBackColor = true;
@@ -53,16 +62,16 @@
             // 
             // urlGrabber
             // 
-            this.urlGrabber.Location = new System.Drawing.Point(53, 31);
+            this.urlGrabber.Location = new System.Drawing.Point(53, 17);
             this.urlGrabber.Name = "urlGrabber";
-            this.urlGrabber.Size = new System.Drawing.Size(243, 20);
+            this.urlGrabber.Size = new System.Drawing.Size(217, 20);
             this.urlGrabber.TabIndex = 0;
             this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Location = new System.Drawing.Point(12, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 11;
@@ -102,7 +111,7 @@
             // 
             // customGrabber
             // 
-            this.customGrabber.Location = new System.Drawing.Point(461, 31);
+            this.customGrabber.Location = new System.Drawing.Point(461, 17);
             this.customGrabber.Name = "customGrabber";
             this.customGrabber.Size = new System.Drawing.Size(243, 20);
             this.customGrabber.TabIndex = 1;
@@ -110,7 +119,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(314, 34);
+            this.label4.Location = new System.Drawing.Point(314, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(141, 13);
             this.label4.TabIndex = 13;
@@ -195,12 +204,54 @@
             this.outputCustom.TabIndex = 22;
             this.outputCustom.Text = "";
             // 
+            // favoriteButton
+            // 
+            this.favoriteButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("favoriteButton.BackgroundImage")));
+            this.favoriteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.favoriteButton.ContextMenuStrip = this.FavoritesStrip;
+            this.favoriteButton.Location = new System.Drawing.Point(276, 10);
+            this.favoriteButton.Name = "favoriteButton";
+            this.favoriteButton.Size = new System.Drawing.Size(33, 33);
+            this.favoriteButton.TabIndex = 61;
+            this.toolTip1.SetToolTip(this.favoriteButton, "Favorites Menu");
+            this.favoriteButton.UseVisualStyleBackColor = true;
+            this.favoriteButton.Click += new System.EventHandler(this.favoriteButton_Click);
+            // 
+            // FavoritesStrip
+            // 
+            this.FavoritesStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aToolStripMenuItem,
+            this.bToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.FavoritesStrip.Name = "FavoritesStrip";
+            this.FavoritesStrip.Size = new System.Drawing.Size(117, 54);
+            // 
+            // aToolStripMenuItem
+            // 
+            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aToolStripMenuItem.Text = "New . . .";
+            this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
+            // 
+            // bToolStripMenuItem
+            // 
+            this.bToolStripMenuItem.Name = "bToolStripMenuItem";
+            this.bToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.bToolStripMenuItem.Text = "Edit . . .";
+            this.bToolStripMenuItem.Click += new System.EventHandler(this.bToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(113, 6);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1173, 619);
+            this.Controls.Add(this.favoriteButton);
             this.Controls.Add(this.outputCustom);
             this.Controls.Add(this.searchButtonCustom);
             this.Controls.Add(this.searchGrabberCustom);
@@ -220,6 +271,7 @@
             this.Name = "Form1";
             this.Text = "SOURCE AND TAGS";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.FavoritesStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,6 +295,12 @@
         private System.Windows.Forms.Button searchButtonCustom;
         private System.Windows.Forms.TextBox searchGrabberCustom;
         private System.Windows.Forms.RichTextBox outputCustom;
+        private System.Windows.Forms.Button favoriteButton;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ContextMenuStrip FavoritesStrip;
+        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }
 

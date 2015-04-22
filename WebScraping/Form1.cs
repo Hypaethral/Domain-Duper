@@ -10,8 +10,16 @@ using System.IO;
 
 namespace WebScraping {
     public partial class Form1: Form {
+        Dictionary<string, string> scrapeFavorites;
+
         public Form1( ) {
             InitializeComponent( );
+            scrapeFavorites = DataGetter.retrieveFavorites("scrape");
+            foreach (KeyValuePair<string, string> kvp in scrapeFavorites) {
+                //will chaining like this even work?  I'm excited to find out!
+                favoriteButton.ContextMenuStrip.Items.Add(kvp.Key)
+                    .Click += new System.EventHandler(favoriteMenuItemClicked);
+            }
         }
 
         private void Form1_Load( object sender, EventArgs e ) {
@@ -109,6 +117,28 @@ namespace WebScraping {
                     i = outputCustom.Text.IndexOf( searchGrabberCustom.Text, i ) + 1;
                 }
             }   
+        }
+
+        private void favoriteMenuItemClicked(object sender, EventArgs e)
+        {
+            ToolStripMenuItem x = sender as ToolStripMenuItem;
+            urlGrabber.Text = scrapeFavorites[x.Text];
+        }
+
+        private void aToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This will be the 'new' section!");
+        }
+
+        private void bToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This will be the 'edit' section!");
+        }
+
+        private void favoriteButton_Click(object sender, EventArgs e)
+        {
+            Button x = sender as Button;
+            FavoritesStrip.Show( x.PointToScreen( new Point(0, x.Height) ) );
         }
     }
 }

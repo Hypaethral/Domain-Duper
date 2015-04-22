@@ -9,8 +9,16 @@ using System.Windows.Forms;
 
 namespace WebScraping {
     public partial class Form2: Form {
+        Dictionary<string, string> restFavorites;
+
         public Form2( ) {
             InitializeComponent( );
+            restFavorites = DataGetter.retrieveFavorites("rest");
+            foreach (KeyValuePair<string, string> kvp in restFavorites) {
+                //will chaining like this even work?  I'm excited to find out!
+                favoriteButton.ContextMenuStrip.Items.Add(kvp.Key)
+                    .Click += new System.EventHandler(favoriteMenuItemClicked);
+            }
         }
 
         private void textBox1_TextChanged( object sender, EventArgs e ) {
@@ -104,6 +112,26 @@ namespace WebScraping {
                     i = outputRestResult.Text.IndexOf( searchGrabberRestResult.Text, i ) + 1;
                 }
             }   
+        }
+
+        private void favoriteButton_Click(object sender, EventArgs e) {
+            Button x = sender as Button;
+            FavoritesStrip.Show( x.PointToScreen( new Point(0, x.Height) ) );
+        }
+
+        private void favoriteMenuItemClicked( object sender, EventArgs e ){
+            ToolStripMenuItem x = sender as ToolStripMenuItem;
+            urlGrabber.Text = restFavorites[x.Text];
+        }
+
+        private void aToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This will be the 'new' section!");
+        }
+
+        private void bToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This will be the 'edit' section!");
         }
     }
 }

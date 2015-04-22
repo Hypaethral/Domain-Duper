@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent( ) {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.label1 = new System.Windows.Forms.Label();
             this.urlGrabber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,11 +45,18 @@
             this.menuItemPatch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPost = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPut = new System.Windows.Forms.ToolStripMenuItem();
-            this.restCallButton = new WebScraping.SplitButton();
             this.searchButtonRestResult = new System.Windows.Forms.Button();
             this.searchGrabberRestResult = new System.Windows.Forms.TextBox();
             this.outputRestResult = new System.Windows.Forms.RichTextBox();
+            this.favoriteButton = new System.Windows.Forms.Button();
+            this.FavoritesStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.restCallButton = new WebScraping.SplitButton();
             this.restOpts.SuspendLayout();
+            this.FavoritesStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +72,7 @@
             // 
             this.urlGrabber.Location = new System.Drawing.Point(65, 13);
             this.urlGrabber.Name = "urlGrabber";
-            this.urlGrabber.Size = new System.Drawing.Size(281, 20);
+            this.urlGrabber.Size = new System.Drawing.Size(250, 20);
             this.urlGrabber.TabIndex = 0;
             this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
             // 
@@ -239,19 +247,6 @@
             this.menuItemPut.Text = "PUT";
             this.menuItemPut.Click += new System.EventHandler(this.restOptsMenuItem_Click);
             // 
-            // restCallButton
-            // 
-            this.restCallButton.AutoSize = true;
-            this.restCallButton.ContextMenuStrip = this.restOpts;
-            this.restCallButton.Location = new System.Drawing.Point(456, 53);
-            this.restCallButton.Name = "restCallButton";
-            this.restCallButton.Size = new System.Drawing.Size(274, 41);
-            this.restCallButton.SplitMenuStrip = this.restOpts;
-            this.restCallButton.TabIndex = 56;
-            this.restCallButton.Text = "POST";
-            this.restCallButton.UseVisualStyleBackColor = true;
-            this.restCallButton.Click += new System.EventHandler(this.restCallButton_Click);
-            // 
             // searchButtonRestResult
             // 
             this.searchButtonRestResult.Location = new System.Drawing.Point(1012, 95);
@@ -278,11 +273,66 @@
             this.outputRestResult.TabIndex = 59;
             this.outputRestResult.Text = "";
             // 
+            // favoriteButton
+            // 
+            this.favoriteButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("favoriteButton.BackgroundImage")));
+            this.favoriteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.favoriteButton.ContextMenuStrip = this.FavoritesStrip;
+            this.favoriteButton.Location = new System.Drawing.Point(320, 7);
+            this.favoriteButton.Name = "favoriteButton";
+            this.favoriteButton.Size = new System.Drawing.Size(33, 33);
+            this.favoriteButton.TabIndex = 60;
+            this.toolTip1.SetToolTip(this.favoriteButton, "Favorites Menu");
+            this.favoriteButton.UseVisualStyleBackColor = true;
+            this.favoriteButton.Click += new System.EventHandler(this.favoriteButton_Click);
+            // 
+            // FavoritesStrip
+            // 
+            this.FavoritesStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aToolStripMenuItem,
+            this.bToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.FavoritesStrip.Name = "FavoritesStrip";
+            this.FavoritesStrip.Size = new System.Drawing.Size(153, 76);
+            // 
+            // aToolStripMenuItem
+            // 
+            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aToolStripMenuItem.Text = "New . . .";
+            this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
+            // 
+            // bToolStripMenuItem
+            // 
+            this.bToolStripMenuItem.Name = "bToolStripMenuItem";
+            this.bToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bToolStripMenuItem.Text = "Edit . . .";
+            this.bToolStripMenuItem.Click += new System.EventHandler(this.bToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // restCallButton
+            // 
+            this.restCallButton.AutoSize = true;
+            this.restCallButton.ContextMenuStrip = this.restOpts;
+            this.restCallButton.Location = new System.Drawing.Point(456, 53);
+            this.restCallButton.Name = "restCallButton";
+            this.restCallButton.Size = new System.Drawing.Size(274, 41);
+            this.restCallButton.SplitMenuStrip = this.restOpts;
+            this.restCallButton.TabIndex = 56;
+            this.restCallButton.Text = "POST";
+            this.restCallButton.UseVisualStyleBackColor = true;
+            this.restCallButton.Click += new System.EventHandler(this.restCallButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 620);
+            this.Controls.Add(this.favoriteButton);
             this.Controls.Add(this.outputRestResult);
             this.Controls.Add(this.searchGrabberRestResult);
             this.Controls.Add(this.searchButtonRestResult);
@@ -301,6 +351,7 @@
             this.Name = "Form2";
             this.Text = "REST API Interaction";
             this.restOpts.ResumeLayout(false);
+            this.FavoritesStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,6 +383,12 @@
         private System.Windows.Forms.Button searchButtonRestResult;
         private System.Windows.Forms.TextBox searchGrabberRestResult;
         private System.Windows.Forms.RichTextBox outputRestResult;
+        private System.Windows.Forms.Button favoriteButton;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ContextMenuStrip FavoritesStrip;
+        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 
     }
 }

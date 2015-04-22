@@ -20,7 +20,7 @@ namespace WebScraping {
             set;
         }
 
-        /* credit to http://stackoverflow.com/questions/4580397/json-formatter-in-c for the beautification idea
+        /* credit to stack overflow 4580397 "json-formatter-in-c" for the beautification idea
          */
         public static string beautifyJson( string json ) {
             const string INDENT_STRING = "    ";
