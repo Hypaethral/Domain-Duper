@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -9,15 +11,15 @@ using System.Windows.Forms;
 
 namespace WebScraping {
     public partial class Form2: Form {
-        Dictionary<string, string> restFavorites;
+       OrderedDictionary restFavorites;
 
         public Form2( ) {
             InitializeComponent( );
-            restFavorites = DataGetter.retrieveFavorites("rest");
-            foreach (KeyValuePair<string, string> kvp in restFavorites) {
+            restFavorites = DataManager.retrieveFavorites( "rest" );
+            foreach ( DictionaryEntry kvp in restFavorites ) {
                 //will chaining like this even work?  I'm excited to find out!
-                favoriteButton.ContextMenuStrip.Items.Add(kvp.Key)
-                    .Click += new System.EventHandler(favoriteMenuItemClicked);
+                favoriteButton.ContextMenuStrip.Items.Add( kvp.Key.ToString( ) )
+                    .Click += new System.EventHandler( favoriteMenuItemClicked );
             }
         }
 
@@ -66,15 +68,8 @@ namespace WebScraping {
 
         }
 
+        //The main button -- rest verb calls are done through WebWorker right here!
         private void restCallButton_Click( object sender, EventArgs e ) {
-            //todo: css, javascript, html files
-            /* TODO from sat 4-18 23:48: refactor POST to accept the REST verb as a parameter. . . .  Only some will use the dict
-                 (what happens if you try to "get" when there's leftover stuff in the json kvp area?)
-             * Ask the smarties about the manual coding with SplitButton's events and size
-                Is there a way to dynamically grab the parent's width without setting each added item to autosize=false and using the parent width?
-                I want a way to specify that the button "owns" the context menu ( ideally this would be done inside the SplitButton class,
-                maybe I answered my own question here... )
-            */
             outputRestResult.Text = String.Empty;
             JsonObject json = new JsonObject( );
             foreach ( JsonAttributeControl ele in jsonInput.Controls ) {
@@ -90,11 +85,10 @@ namespace WebScraping {
 
         private void restOpts_Opening( object sender, CancelEventArgs e ) {
             restOpts.Size = new System.Drawing.Size( this.restCallButton.Width, restOpts.Items.Count * 22 + 5 );
-            foreach ( ToolStripMenuItem item in restOpts.Items ){
-
+            foreach ( ToolStripMenuItem item in restOpts.Items ) {
                 item.Size = new System.Drawing.Size( this.restCallButton.Width - 1, 22 );
             }
-            
+
         }
 
         private void restOptsMenuItem_Click( object sender, EventArgs e ) {
@@ -111,27 +105,41 @@ namespace WebScraping {
                     outputRestResult.SelectionBackColor = Color.DarkOrchid;
                     i = outputRestResult.Text.IndexOf( searchGrabberRestResult.Text, i ) + 1;
                 }
-            }   
+            }
         }
 
-        private void favoriteButton_Click(object sender, EventArgs e) {
+        private void favoriteButton_Click( object sender, EventArgs e ) {
             Button x = sender as Button;
-            FavoritesStrip.Show( x.PointToScreen( new Point(0, x.Height) ) );
+            FavoritesStrip.Show( x.PointToScreen( new Point( 0, x.Height ) ) );
         }
 
-        private void favoriteMenuItemClicked( object sender, EventArgs e ){
+        private void favoriteMenuItemClicked( object sender, EventArgs e ) {
             ToolStripMenuItem x = sender as ToolStripMenuItem;
-            urlGrabber.Text = restFavorites[x.Text];
+            urlGrabber.Text = (string)restFavorites[x.Text];
         }
 
-        private void aToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This will be the 'new' section!");
+        private void bToolStripMenuItem_Click( object sender, EventArgs e ) {
+            var forma = new Form3( restFavorites, "rest" );
+            forma.FormClosed += new FormClosedEventHandler( forma_FormClosed );
+            forma.Show( );
         }
 
-        private void bToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This will be the 'edit' section!");
+        //This function allows us to refresh the favorites whenever the editing page is closed 
+        //    (changes only occur when file is updated)
+        private void forma_FormClosed( object sender, FormClosedEventArgs e ) {
+            var edit = favoriteButton.ContextMenuStrip.Items[0];
+            var div = favoriteButton.ContextMenuStrip.Items[1];
+            favoriteButton.ContextMenuStrip.Items.Clear( );
+            restFavorites = DataManager.retrieveFavorites( "rest" );
+
+            //rebuilding the contextmenustrip
+            favoriteButton.ContextMenuStrip.Items.Add( edit );
+            favoriteButton.ContextMenuStrip.Items.Add( div );
+            foreach ( DictionaryEntry kvp in restFavorites ) {
+                favoriteButton.ContextMenuStrip.Items.Add( kvp.Key.ToString( ) )
+                    .Click += new System.EventHandler( favoriteMenuItemClicked );
+            }
+            ( (Form3)sender ).FormClosed -= forma_FormClosed;
         }
     }
 }

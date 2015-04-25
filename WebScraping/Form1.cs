@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -10,15 +12,15 @@ using System.IO;
 
 namespace WebScraping {
     public partial class Form1: Form {
-        Dictionary<string, string> scrapeFavorites;
+        OrderedDictionary scrapeFavorites;
 
         public Form1( ) {
             InitializeComponent( );
-            scrapeFavorites = DataGetter.retrieveFavorites("scrape");
-            foreach (KeyValuePair<string, string> kvp in scrapeFavorites) {
+            scrapeFavorites = DataManager.retrieveFavorites( "scrape" );
+            foreach ( DictionaryEntry kvp in scrapeFavorites ) {
                 //will chaining like this even work?  I'm excited to find out!
-                favoriteButton.ContextMenuStrip.Items.Add(kvp.Key)
-                    .Click += new System.EventHandler(favoriteMenuItemClicked);
+                favoriteButton.ContextMenuStrip.Items.Add( kvp.Key.ToString() )
+                    .Click += new System.EventHandler( favoriteMenuItemClicked );
             }
         }
 
@@ -98,7 +100,7 @@ namespace WebScraping {
                     outputSource.SelectionBackColor = Color.DarkOrchid;
                     i = outputSource.Text.IndexOf( searchGrabberSource.Text, i ) + 1;
                 }
-            }            
+            }
         }
 
         private void textBox1_TextChanged( object sender, EventArgs e ) {
@@ -116,29 +118,25 @@ namespace WebScraping {
                     outputCustom.SelectionBackColor = Color.DarkOrchid;
                     i = outputCustom.Text.IndexOf( searchGrabberCustom.Text, i ) + 1;
                 }
-            }   
+            }
         }
 
-        private void favoriteMenuItemClicked(object sender, EventArgs e)
-        {
+        private void favoriteMenuItemClicked( object sender, EventArgs e ) {
             ToolStripMenuItem x = sender as ToolStripMenuItem;
-            urlGrabber.Text = scrapeFavorites[x.Text];
+            urlGrabber.Text = (string)scrapeFavorites[x.Text];
         }
 
-        private void aToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This will be the 'new' section!");
+        private void aToolStripMenuItem_Click( object sender, EventArgs e ) {
+            MessageBox.Show( "This will be the 'new' section!" );
         }
 
-        private void bToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This will be the 'edit' section!");
+        private void bToolStripMenuItem_Click( object sender, EventArgs e ) {
+            MessageBox.Show( "This will be the 'edit' section!" );
         }
 
-        private void favoriteButton_Click(object sender, EventArgs e)
-        {
+        private void favoriteButton_Click( object sender, EventArgs e ) {
             Button x = sender as Button;
-            FavoritesStrip.Show( x.PointToScreen( new Point(0, x.Height) ) );
+            FavoritesStrip.Show( x.PointToScreen( new Point( 0, x.Height ) ) );
         }
     }
 }

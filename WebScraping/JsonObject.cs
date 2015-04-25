@@ -7,7 +7,7 @@ namespace WebScraping {
     public class JsonObject {
         public JsonObject( ) {
             jsonString = "";
-            kvps = new Dictionary<string,string>( );
+            kvps = new Dictionary<string, string>( );
         }
 
         public string jsonString {
@@ -30,18 +30,17 @@ namespace WebScraping {
             for ( int i = 0; i < json.Length; i++ ) {
                 char x = json[i];
                 switch ( x ) {
-                    case( '{' ):
-                    case( '[' ):
+                    case ( '{' ):
+                    case ( '[' ):
                         builder.Append( x );
                         if ( !insideQuotes ) {
                             builder.AppendLine( );
                             Enumerable.Range( 0, ++indentAmount ).ForEach( item => builder.Append( INDENT_STRING ) );
                         }
                         break;
-                    case( '}' ):
+                    case ( '}' ):
                     case ( ']' ):
-                        if ( !insideQuotes )
-                        {
+                        if ( !insideQuotes ) {
                             builder.AppendLine( );
                             Enumerable.Range( 0, --indentAmount ).ForEach( item => builder.Append( INDENT_STRING ) );
                         }

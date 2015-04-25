@@ -42,11 +42,10 @@
             this.searchGrabberCustom = new System.Windows.Forms.TextBox();
             this.outputCustom = new System.Windows.Forms.RichTextBox();
             this.favoriteButton = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.FavoritesStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.FavoritesStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -220,30 +219,22 @@
             // FavoritesStrip
             // 
             this.FavoritesStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aToolStripMenuItem,
             this.bToolStripMenuItem,
             this.toolStripMenuItem1});
             this.FavoritesStrip.Name = "FavoritesStrip";
-            this.FavoritesStrip.Size = new System.Drawing.Size(117, 54);
-            // 
-            // aToolStripMenuItem
-            // 
-            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-            this.aToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.aToolStripMenuItem.Text = "New . . .";
-            this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
+            this.FavoritesStrip.Size = new System.Drawing.Size(153, 54);
             // 
             // bToolStripMenuItem
             // 
             this.bToolStripMenuItem.Name = "bToolStripMenuItem";
-            this.bToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.bToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.bToolStripMenuItem.Text = "Edit . . .";
             this.bToolStripMenuItem.Click += new System.EventHandler(this.bToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(113, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // Form1
             // 
@@ -298,7 +289,6 @@
         private System.Windows.Forms.Button favoriteButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ContextMenuStrip FavoritesStrip;
-        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }

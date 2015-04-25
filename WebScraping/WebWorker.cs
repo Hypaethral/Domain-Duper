@@ -35,18 +35,18 @@ namespace WebScraping {
         }
 
         public static string searchTags( string source, string tag ) {
-            if (tag != "script") {
-                var matches = Regex.Matches(source, String.Format("(<{0}.*?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            if ( tag != "script" ) {
+                var matches = Regex.Matches( source, String.Format( "(<{0}.*?>)", tag ), RegexOptions.Multiline | RegexOptions.IgnoreCase );
                 var result = String.Empty;
-                foreach (var match in matches) {
-                    result += match.ToString() + Environment.NewLine;
+                foreach ( var match in matches ) {
+                    result += match.ToString( ) + Environment.NewLine;
                 }
                 return result;
             } else {
-                var matches = Regex.Matches(source, String.Format("(<{0}.*?>[\\S\\s]*?</{0}?>)", tag), RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                var matches = Regex.Matches( source, String.Format( "(<{0}.*?>[\\S\\s]*?</{0}?>)", tag ), RegexOptions.Multiline | RegexOptions.IgnoreCase );
                 var result = String.Empty;
-                foreach (var match in matches) {
-                    result += match.ToString() + Environment.NewLine + Environment.NewLine;
+                foreach ( var match in matches ) {
+                    result += match.ToString( ) + Environment.NewLine + Environment.NewLine;
                 }
                 return result;
             }
@@ -59,23 +59,23 @@ namespace WebScraping {
          * return s.Deserialize( a, a.GetType() );
          */
         public static string serializeJson( Dictionary<string, string> dict ) {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder( );
             int count = 0;
-            foreach( var entry in dict ){
-                sb.AppendFormat("{0}={1}", entry.Key, entry.Value, WebUtility.HtmlEncode(entry.Value));
-                if ( count != dict.Count - 1 ){
-                    sb.Append("&");
+            foreach ( var entry in dict ) {
+                sb.AppendFormat( "{0}={1}", entry.Key, entry.Value, WebUtility.HtmlEncode( entry.Value ) );
+                if ( count != dict.Count - 1 ) {
+                    sb.Append( "&" );
                 }
                 count++;
             }
-            return sb.ToString();
+            return sb.ToString( );
         }
 
-        public static string restCall( string url, string contentType, string method, Dictionary<string,string> dict ) {
+        public static string restCall( string url, string contentType, string method, Dictionary<string, string> dict ) {
             //todo:  serialize string:string dictionary as json
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
-                if (contentType != String.Empty) {
+                if ( contentType != String.Empty ) {
                     req.ContentType = contentType;
                 } else {
                     req.ContentType = "application/x-www-form-urlencoded";
