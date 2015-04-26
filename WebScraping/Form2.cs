@@ -121,7 +121,7 @@ namespace WebScraping {
         private void bToolStripMenuItem_Click( object sender, EventArgs e ) {
             var forma = new Form3( restFavorites, "rest" );
             forma.FormClosed += new FormClosedEventHandler( forma_FormClosed );
-            forma.Show( );
+            forma.ShowDialog( );
         }
 
         //This function allows us to refresh the favorites whenever the editing page is closed 
@@ -140,6 +140,7 @@ namespace WebScraping {
                     .Click += new System.EventHandler( favoriteMenuItemClicked );
             }
             ( (Form3)sender ).FormClosed -= forma_FormClosed;
+            ( (Form3)sender ).Dispose( );
         }
     }
 }

@@ -46,34 +46,6 @@ namespace WebScraping {
             }
         }
 
-        private void label2_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void label3_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void label4_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void button3_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void label5_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void outputSource_TextChanged( object sender, EventArgs e ) {
-
-        }
-
-        private void label6_Click( object sender, EventArgs e ) {
-
-        }
-
         private void button2_Click( object sender, EventArgs e ) {
             Form2 form2 = new Form2( );
             form2.Tag = this;
@@ -84,11 +56,7 @@ namespace WebScraping {
         private void urlGrabber_TextChanged( object sender, EventArgs e ) {
 
         }
-
-        private void label6_Click_1( object sender, EventArgs e ) {
-
-        }
-
+        
         private void button3_Click_1( object sender, EventArgs e ) {
             //This line resets the selectionBackColor formatting... is there a cleaner way? 
             outputSource.Text = outputSource.Text;
@@ -126,12 +94,27 @@ namespace WebScraping {
             urlGrabber.Text = (string)scrapeFavorites[x.Text];
         }
 
-        private void aToolStripMenuItem_Click( object sender, EventArgs e ) {
-            MessageBox.Show( "This will be the 'new' section!" );
+        private void bToolStripMenuItem_Click( object sender, EventArgs e ) {
+            var forma = new Form3( scrapeFavorites, "scrape" );
+            forma.FormClosed += new FormClosedEventHandler( forma_FormClosed );
+            forma.ShowDialog( );
         }
 
-        private void bToolStripMenuItem_Click( object sender, EventArgs e ) {
-            MessageBox.Show( "This will be the 'edit' section!" );
+        private void forma_FormClosed( object sender, FormClosedEventArgs e ) {
+            var edit = favoriteButton.ContextMenuStrip.Items[0];
+            var div = favoriteButton.ContextMenuStrip.Items[1];
+            favoriteButton.ContextMenuStrip.Items.Clear( );
+            scrapeFavorites = DataManager.retrieveFavorites( "scrape" );
+
+            //rebuilding the contextmenustrip
+            favoriteButton.ContextMenuStrip.Items.Add( edit );
+            favoriteButton.ContextMenuStrip.Items.Add( div );
+            foreach ( DictionaryEntry kvp in scrapeFavorites ) {
+                favoriteButton.ContextMenuStrip.Items.Add( kvp.Key.ToString( ) )
+                    .Click += new System.EventHandler( favoriteMenuItemClicked );
+            }
+            ( (Form3)sender ).FormClosed -= forma_FormClosed;
+            ( (Form3)sender ).Dispose( );
         }
 
         private void favoriteButton_Click( object sender, EventArgs e ) {

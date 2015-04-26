@@ -75,7 +75,7 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "URL: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            
             // 
             // label2
             // 
@@ -85,7 +85,7 @@
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "SOURCE";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            
             // 
             // label3
             // 
@@ -95,7 +95,6 @@
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "META TAGS";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // outputMeta
             // 
@@ -123,7 +122,7 @@
             this.label4.Size = new System.Drawing.Size(141, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "OPTIONAL CUSTOM TAG: ";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            
             // 
             // label5
             // 
@@ -133,7 +132,7 @@
             this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "CUSTOM TAG RESULTS: ";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            
             // 
             // button2
             // 

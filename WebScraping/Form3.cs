@@ -18,10 +18,6 @@ namespace WebScraping {
             populateListView( aItems );
         }
 
-        private void Form3_Load( object sender, EventArgs e ) {
-
-        }
-
         private void listView1_SelectedIndexChanged( object sender, EventArgs e ) {
 
         }
@@ -42,7 +38,9 @@ namespace WebScraping {
         }
 
         private void newFav_Click( object sender, EventArgs e ) {
-
+            var formb = new Form4( "New" );
+            formb.FormClosed += new FormClosedEventHandler( formb_FormClosed );
+            formb.ShowDialog( );
         }
 
         private void saveChanges_Click( object sender, EventArgs e ) {
@@ -59,8 +57,30 @@ namespace WebScraping {
         }
 
         private void editFav_Click( object sender, EventArgs e ) {
-
+            if ( favsListView.SelectedIndices.Count > 1 ) {
+                MessageBox.Show( "You may only edit one favorite at a time!" );
+            } else if ( favsListView.SelectedIndices.Count > 0 ) {
+                var formb = new Form4( "Edit", favsListView.SelectedItems[0] );
+                formb.FormClosed += new FormClosedEventHandler( formb_FormClosed );
+                formb.ShowDialog( );
+            }
         }
+        //This function allows us to return the new thinger to the previous form
+        private void formb_FormClosed( object sender, FormClosedEventArgs e ) {
+            if ( ( (Form4)sender ).context == "Edit"  && ( (Form4)sender ).returnValue != null
+                && ( ( (Form4)sender ).returnValue.SubItems[0].Text != String.Empty
+                && ( (Form4)sender ).returnValue.SubItems[1].Text != String.Empty ) ) {
+                favsListView.Items[favsListView.SelectedIndices[0]] = ( (Form4)sender ).returnValue;
+            } else if ( ( (Form4)sender ).returnValue != null && ( (Form4)sender ).returnValue.SubItems[0].Text != String.Empty 
+                && ( (Form4)sender ).returnValue.SubItems[1].Text != String.Empty ) {
+                favsListView.SelectedIndices.Clear( );
+                favsListView.Items.Add( ( (Form4)sender ).returnValue );
+            }
+            
+            ( (Form4)sender ).FormClosed -= formb_FormClosed;
+            ( (Form4)sender ).Dispose( );
+        }
+
 
         private void mvFavUp_Click( object sender, EventArgs e ) {
             DataManager.MoveListViewItem( favsListView, DataManager.MoveDirection.Up );
