@@ -34,7 +34,6 @@ namespace WebScraping {
             } else {
                 MessageBox.Show( "The fields cannot be empty if you would like to save!" );
             }
-            
         }
 
         private void Form4_FormClosing( object sender, FormClosingEventArgs e ) {

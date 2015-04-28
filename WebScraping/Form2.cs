@@ -23,34 +23,10 @@ namespace WebScraping {
             }
         }
 
-        private void textBox1_TextChanged( object sender, EventArgs e ) {
-
-        }
-
-        private void label4_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void button4_Click( object sender, EventArgs e ) {
+        private void prevForm_Click( object sender, EventArgs e ) {
             var form1 = (Form1)Tag;
             form1.Show( );
             Close( );
-        }
-
-        private void urlGrabber_TextChanged( object sender, EventArgs e ) {
-
-        }
-
-        private void label3_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void jsonOutput_TextChanged( object sender, EventArgs e ) {
-
-        }
-
-        private void label2_Click( object sender, EventArgs e ) {
-
         }
 
         private void button2_Click_1( object sender, EventArgs e ) {
@@ -62,10 +38,6 @@ namespace WebScraping {
             jsonInput.AutoScroll = false;
             jsonInput.Controls.Clear( );
             jsonInput.AutoScroll = true;
-        }
-
-        private void jsonInput_Paint( object sender, PaintEventArgs e ) {
-
         }
 
         //The main button -- rest verb calls are done through WebWorker right here!

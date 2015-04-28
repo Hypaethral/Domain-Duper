@@ -18,10 +18,6 @@ namespace WebScraping {
             populateListView( aItems );
         }
 
-        private void listView1_SelectedIndexChanged( object sender, EventArgs e ) {
-
-        }
-
         private void populateListView( OrderedDictionary aItems ) {
             favsListView.Clear( );
             favsListView.Columns.Add( "NAME", -2, HorizontalAlignment.Left );

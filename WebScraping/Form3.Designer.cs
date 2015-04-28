@@ -84,7 +84,6 @@
             this.favsListView.TabIndex = 4;
             this.favsListView.UseCompatibleStateImageBehavior = false;
             this.favsListView.View = System.Windows.Forms.View.Details;
-            this.favsListView.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // saveChanges
             // 
@@ -120,8 +119,10 @@
             this.Controls.Add(this.newFav);
             this.Controls.Add(this.rmFav);
             this.Name = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form3";
             this.ResumeLayout(false);
+
         }
 
         #endregion

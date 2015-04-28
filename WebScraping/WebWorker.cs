@@ -14,6 +14,8 @@ using System.Text.RegularExpressions;
 
 namespace WebScraping {
     public class WebWorker {
+        /* This method returns the HTML from the desired url as a string.
+         */
         public static string getSource( string url ) {
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
@@ -34,6 +36,10 @@ namespace WebScraping {
             }
         }
 
+        /* This method finds matches for tags within long HTML documents.  It accepts
+         * a string and appends tag brackets (<>).  Scripts have a special result, which
+         * includes all the contents between the start-tag and end-tag.
+         */
         public static string searchTags( string source, string tag ) {
             if ( tag != "script" ) {
                 var matches = Regex.Matches( source, String.Format( "(<{0}.*?>)", tag ), RegexOptions.Multiline | RegexOptions.IgnoreCase );
@@ -53,10 +59,7 @@ namespace WebScraping {
         }
 
 
-        /* old serializer syntax 
-         * var s = new JavaScriptSerializer( );
-         * string a = s.Serialize( stuff );
-         * return s.Deserialize( a, a.GetType() );
+        /* Converts a dictionary<string, string> to JSON post format
          */
         public static string serializeJson( Dictionary<string, string> dict ) {
             StringBuilder sb = new StringBuilder( );
@@ -71,8 +74,10 @@ namespace WebScraping {
             return sb.ToString( );
         }
 
+        /*  Based on the context from which it was called, this method attempts to make
+         *  a REST api call from the form.  It returns the response from this call.
+         */
         public static string restCall( string url, string contentType, string method, Dictionary<string, string> dict ) {
-            //todo:  serialize string:string dictionary as json
             try {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create( url );
                 if ( contentType != String.Empty ) {

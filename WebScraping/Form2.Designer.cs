@@ -73,7 +73,6 @@
             this.urlGrabber.Name = "urlGrabber";
             this.urlGrabber.Size = new System.Drawing.Size(250, 20);
             this.urlGrabber.TabIndex = 0;
-            this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
             // 
             // label4
             // 
@@ -83,7 +82,6 @@
             this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 47;
             this.label4.Text = "CONTENT TYPE:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button4
             // 
@@ -93,7 +91,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "previous page";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.prevForm_Click);
             // 
             // label2
             // 
@@ -103,7 +101,6 @@
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 52;
             this.label2.Text = "JSON INPUT";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button2
             // 
@@ -123,7 +120,6 @@
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 29;
             this.label3.Text = "RESULT";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // jsonInput
             // 
@@ -136,7 +132,6 @@
             this.jsonInput.Size = new System.Drawing.Size(578, 446);
             this.jsonInput.TabIndex = 54;
             this.jsonInput.WrapContents = false;
-            this.jsonInput.Paint += new System.Windows.Forms.PaintEventHandler(this.jsonInput_Paint);
             // 
             // clearAll
             // 
@@ -164,7 +159,6 @@
             this.contentGrabber.Name = "contentGrabber";
             this.contentGrabber.Size = new System.Drawing.Size(274, 22);
             this.contentGrabber.TabIndex = 1;
-            this.contentGrabber.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // restOpts
             // 
@@ -340,6 +334,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlGrabber);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "REST API Interaction";
             this.restOpts.ResumeLayout(false);
             this.FavoritesStrip.ResumeLayout(false);

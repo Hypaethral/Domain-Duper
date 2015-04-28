@@ -57,7 +57,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "SCRAPE";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.scrape_Click);
             // 
             // urlGrabber
             // 
@@ -65,7 +65,6 @@
             this.urlGrabber.Name = "urlGrabber";
             this.urlGrabber.Size = new System.Drawing.Size(217, 20);
             this.urlGrabber.TabIndex = 0;
-            this.urlGrabber.TextChanged += new System.EventHandler(this.urlGrabber_TextChanged);
             // 
             // label1
             // 
@@ -75,7 +74,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "URL: ";
-            
             // 
             // label2
             // 
@@ -85,7 +83,6 @@
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "SOURCE";
-            
             // 
             // label3
             // 
@@ -122,7 +119,6 @@
             this.label4.Size = new System.Drawing.Size(141, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "OPTIONAL CUSTOM TAG: ";
-            
             // 
             // label5
             // 
@@ -132,7 +128,6 @@
             this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "CUSTOM TAG RESULTS: ";
-            
             // 
             // button2
             // 
@@ -142,7 +137,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "next page";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.nextForm_Click);
             // 
             // searchGrabberSource
             // 
@@ -159,7 +154,7 @@
             this.searchButtonSource.TabIndex = 4;
             this.searchButtonSource.Text = "SEARCH";
             this.searchButtonSource.UseVisualStyleBackColor = true;
-            this.searchButtonSource.Click += new System.EventHandler(this.button3_Click_1);
+            this.searchButtonSource.Click += new System.EventHandler(this.searchHtml_Click);
             // 
             // outputSource
             // 
@@ -188,7 +183,6 @@
             this.searchGrabberCustom.Name = "searchGrabberCustom";
             this.searchGrabberCustom.Size = new System.Drawing.Size(158, 20);
             this.searchGrabberCustom.TabIndex = 5;
-            this.searchGrabberCustom.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // outputCustom
             // 
@@ -221,19 +215,19 @@
             this.bToolStripMenuItem,
             this.toolStripMenuItem1});
             this.FavoritesStrip.Name = "FavoritesStrip";
-            this.FavoritesStrip.Size = new System.Drawing.Size(153, 54);
+            this.FavoritesStrip.Size = new System.Drawing.Size(113, 32);
             // 
             // bToolStripMenuItem
             // 
             this.bToolStripMenuItem.Name = "bToolStripMenuItem";
-            this.bToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.bToolStripMenuItem.Text = "Edit . . .";
             this.bToolStripMenuItem.Click += new System.EventHandler(this.bToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(109, 6);
             // 
             // Form1
             // 
@@ -259,8 +253,8 @@
             this.Controls.Add(this.urlGrabber);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SOURCE AND TAGS";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.FavoritesStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

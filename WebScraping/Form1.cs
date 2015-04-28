@@ -18,21 +18,13 @@ namespace WebScraping {
             InitializeComponent( );
             scrapeFavorites = DataManager.retrieveFavorites( "scrape" );
             foreach ( DictionaryEntry kvp in scrapeFavorites ) {
-                //will chaining like this even work?  I'm excited to find out!
+                //talk about this during presentation
                 favoriteButton.ContextMenuStrip.Items.Add( kvp.Key.ToString() )
                     .Click += new System.EventHandler( favoriteMenuItemClicked );
             }
         }
 
-        private void Form1_Load( object sender, EventArgs e ) {
-
-        }
-
-        private void label1_Click( object sender, EventArgs e ) {
-
-        }
-
-        private void button1_Click( object sender, EventArgs e ) {
+        private void scrape_Click( object sender, EventArgs e ) {
             string url = urlGrabber.Text.IndexOf( "http" ) < 0 ? "http://" + urlGrabber.Text : urlGrabber.Text;
             string source = WebWorker.getSource( url );
             outputSource.Text = source;
@@ -46,18 +38,14 @@ namespace WebScraping {
             }
         }
 
-        private void button2_Click( object sender, EventArgs e ) {
+        private void nextForm_Click( object sender, EventArgs e ) {
             Form2 form2 = new Form2( );
             form2.Tag = this;
             form2.Show( this );
             Hide( );
         }
-
-        private void urlGrabber_TextChanged( object sender, EventArgs e ) {
-
-        }
         
-        private void button3_Click_1( object sender, EventArgs e ) {
+        private void searchHtml_Click( object sender, EventArgs e ) {
             //This line resets the selectionBackColor formatting... is there a cleaner way? 
             outputSource.Text = outputSource.Text;
             if ( searchGrabberSource.Text != String.Empty ) {
@@ -69,10 +57,6 @@ namespace WebScraping {
                     i = outputSource.Text.IndexOf( searchGrabberSource.Text, i ) + 1;
                 }
             }
-        }
-
-        private void textBox1_TextChanged( object sender, EventArgs e ) {
-
         }
 
         private void searchTagButton_Click( object sender, EventArgs e ) {
